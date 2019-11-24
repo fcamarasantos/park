@@ -17,6 +17,20 @@ public class Estacionamento {
 	private int vagasMotos;
 	private int vagasCarros;
 	
+	public Estacionamento() {
+		super();
+	}
+
+	public Estacionamento(Long id, String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cnpj = cnpj;
+		this.telefone = telefone;
+		this.vagasMotos = vagasMotos;
+		this.vagasCarros = vagasCarros;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

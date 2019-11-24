@@ -19,6 +19,19 @@ public class Carro {
 	@Enumerated(EnumType.STRING)
 	private TipoVeiculo veiculo;
 	
+	public Carro() {
+		super();
+	}
+
+	public Carro(Long id, String marca, String cor, String placa, TipoVeiculo veiculo) {
+		super();
+		this.id = id;
+		this.marca = marca;
+		this.cor = cor;
+		this.placa = placa;
+		this.veiculo = veiculo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
