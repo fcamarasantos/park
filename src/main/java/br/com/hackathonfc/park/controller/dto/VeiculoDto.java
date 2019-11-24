@@ -1,5 +1,10 @@
 package br.com.hackathonfc.park.controller.dto;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import br.com.hackathonfc.park.model.Veiculo;
+
 public class VeiculoDto {
 	
 	private Long id;
@@ -10,12 +15,16 @@ public class VeiculoDto {
 	
 	private String placa;
 	
-	public VeiculoDto(Long id, String marca, String cor, String placa) {
+	public VeiculoDto(Veiculo veiculo) {
 		super();
-		this.id = id;
-		this.marca = marca;
-		this.cor = cor;
-		this.placa = placa;
+		this.id = veiculo.getId();
+		this.marca = veiculo.getMarca();
+		this.cor = veiculo.getCor();
+		this.placa = veiculo.getPlaca();
+	}
+	
+	public static List<VeiculoDto> converter(List<Veiculo> veiculos) {
+		return veiculos.stream().map(VeiculoDto::new).collect(Collectors.toList());
 	}
 
 	public Long getId() {

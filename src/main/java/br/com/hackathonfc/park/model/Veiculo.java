@@ -14,22 +14,21 @@ public class Veiculo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String marca;
+	private String modelo;
 	private String cor;
 	private String placa;
 	@Enumerated(EnumType.STRING)
-	private TipoVeiculo veiculo;
+	private TipoVeiculo tipoVeiculo;
 	
 	public Veiculo() {
 		super();
 	}
 
-	public Veiculo(Long id, String marca, String cor, String placa, TipoVeiculo veiculo) {
-		super();
-		this.id = id;
+	public Veiculo(String marca, String modelo, String cor, String placa) {
 		this.marca = marca;
+		this.setModelo(modelo);
 		this.cor = cor;
 		this.placa = placa;
-		this.veiculo = veiculo;
 	}
 
 	@Override
@@ -90,11 +89,19 @@ public class Veiculo {
 	}
 
 	public TipoVeiculo getVeiculo() {
-		return veiculo;
+		return tipoVeiculo;
 	}
 
 	public void setVeiculo(TipoVeiculo veiculo) {
-		this.veiculo = veiculo;
+		this.tipoVeiculo = veiculo;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
 	}
 
 }

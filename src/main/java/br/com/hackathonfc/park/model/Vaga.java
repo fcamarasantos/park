@@ -19,7 +19,7 @@ public class Vaga {
 		private Estacionamento estacionamento;
 		
 		@OneToOne
-		private Veiculo carro;
+		private Veiculo veiculo;
 		
 		private LocalDateTime dataInicio;
 		
@@ -31,11 +31,11 @@ public class Vaga {
 			
 		}
 
-		public Vaga(Long id, Estacionamento estacionamento, Veiculo carro, LocalDateTime dataInicio,
+		public Vaga(Long id, Estacionamento estacionamento, Veiculo veiculo, LocalDateTime dataInicio,
 				LocalDateTime dataSaida, boolean livre) {
 			this.id = id;
 			this.estacionamento = estacionamento;
-			this.carro = carro;
+			this.veiculo = veiculo;
 			this.dataInicio = dataInicio;
 			this.dataSaida = dataSaida;
 			this.livre = livre;
@@ -50,7 +50,7 @@ public class Vaga {
 		}
 
 		public Veiculo getCarro() {
-			return carro;
+			return veiculo;
 		}
 
 		public LocalDateTime getDataInicio() {
