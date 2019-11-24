@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
-
 
 import br.com.hackathonfc.park.controller.dto.VagaDto;
 import br.com.hackathonfc.park.controller.form.EstacionamentoForm;
@@ -44,16 +44,13 @@ public class EstacionamentoController {
 	private VagaRepository vagaRepository;
 	
 	
-	
-	@RequestMapping("/")
-	   public ModelAndView index(){
-	   return new ModelAndView("index");
+	@RequestMapping(value="/cadastro", method=RequestMethod.POST )
+	   public String form(){
+	   return"cadastro";
 	}
 	
-	@RequestMapping(value="/cadastro" )
-	   public ModelAndView Cadastro(){
-	   return new ModelAndView("cadastro");
-	}
+	
+
 	
 	
 	@CrossOrigin
