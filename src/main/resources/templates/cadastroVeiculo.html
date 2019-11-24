@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+
+    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <style>
+        .bootstrap-iso .formden_header h2,
+        .bootstrap-iso .formden_header p,
+        .bootstrap-iso form {
+            font-family: Arial, Helvetica, sans-serif;
+            color: black
+        }
+
+        .bootstrap-iso form button,
+        .bootstrap-iso form button:hover {
+            color: white !important;
+        }
+    </style>
+
+<body>
+    <div class="bootstrap-iso">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <form method="post">
+
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <label class="control-label " for="marca">
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                       Marca
+                                    </div>
+                                    <input class="form-control" id="marca" name="marca" type="text" />
+                                </div>
+                            </div>
+                            
+                        </div style="padding-bottom:5px;">
+                        <br>
+                        <div class="col-md-6">
+                            <div class="form-group ">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                       Modelo
+                                    </div>
+                                    <input maxlength="13" 
+                                        class="form-control" id="modl" name="modl"
+                                        type="text" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                                <div class="form-group ">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                           Cor
+                                        </div>
+                                        <input maxlength="13" 
+                                            class="form-control" id="cor" name="cor"
+                                            type="text" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                             Placa
+                                            </div>
+                                            <input maxlength="7" 
+                                                class="form-control" id="placa" name="placa"
+                                                type="text" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                        <div class="col-md-6" style="margin-left: 43%;">
+                            <div class="form-group">
+                                <div>
+                                    <button style="width: 200px;" class="btn btn-primary " name="submit" type="submit">
+                                        Cadastrar
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        function fMasc(objeto, mascara) {
+            obj = objeto
+            masc = mascara
+            setTimeout("fMascEx()", 1)
+        }
+        function fMascEx() {
+            obj.value = masc(obj.value)
+        }
+
+
+        function mCNPJ(cnpj) {
+            cnpj = cnpj.replace(/\D/g, "")
+            cnpj = cnpj.replace(/^(\d{2})(\d)/, "$1.$2")
+            cnpj = cnpj.replace(/^(\d{2})\.(\d{3})(\d)/, "$1.$2.$3")
+            cnpj = cnpj.replace(/\.(\d{3})(\d)/, ".$1/$2")
+            cnpj = cnpj.replace(/(\d{4})(\d)/, "$1-$2")
+            return cnpj
+        }
+
+        function mNum(num) {
+            num = num.replace(/\D/g, "")
+            return num
+        }
+    </script>
+    </head>
+
+    <body>
