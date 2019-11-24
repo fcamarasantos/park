@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Helvetica Neue', 'Helvetica', Arial, sans-serif;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  background: #000;
+}
+
+.content {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+header#main-header {
+  height: 284px;
+}
+
+div.wrapper-content {
+  display: flex;
+  background: #e6ecf0;
+  height: 100%;
+}
+
+div.wrapper-content aside.menu{
+  width: 260px;
+  background: #505050; 
+}
+
+div.wrapper-content aside.menu nav ul {
+  display: flex;
+  list-style: none;
+  min-height: 500px;
+  align-items: center;
+  flex-direction: column;
+} 
+
+div.wrapper-content aside.menu nav ul:first-child {
+  padding-top: 20px;
+} 
+
+div.wrapper-content aside.menu nav ul li{
+  display: flex;
+  background: #ffa201; 
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  height: 35px;
+  width: 220px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+div.wrapper-content aside.menu nav ul li img { 
+  height: 20px;
+  width: 20px;
+}
+
+div.wrapper-content section.main {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 0%;
+}
+
+div.wrapper-content section.main .estacionamento {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 30px 20px;
+  width: 800px;
+  border-radius: 10px;
+  background: url('/images/estacionamento.png') no-repeat center;
+  margin-top: 10px;
+}
+
+div.wrapper-content section.main .estacionamento:last-child{
+  margin-bottom: 10px;
+}
+div.wrapper-content section.main .estacionamento h1 {
+  margin-bottom: 5px;
+}
+
+div.wrapper-content section.main .estacionamento .info .tags .vagas ul {
+  list-style: none;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+div.wrapper-content section.main .estacionamento .info .tags .vagas li {
+  background: #ffa201;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 12px;
+  margin-right: 5px;
+  padding: 5px 17px;
+}
+
+div.wrapper-content section.main .estacionamento .info .tags .vagas li strong {
+margin-right: 4px;
+}
+
+div.wrapper-content section.main .estacionamento .info .tags .endereco {
+  background: #ffa201;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 10px;
+  font-size: 12px;
+  margin-right: 5px;
+  padding: 5px 17px;  
+}
+
+div.wrapper-content section.main .estacionamento a {
+  background: #ffa201;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #fff;
+  font-size: 15px;
+  margin-right: 5px;
+  padding: 0px 17px; 
+  height: 40px;
+}
+
+footer#rodape {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  color: #fff;
+  height: 150px;
+  background: #333333; 
+}
+
+footer#rodape img {
+  height: 30%;
+}
