@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.hackathonfc.park.controller.form.AtualizacaoEstacionamentoForm;
 import br.com.hackathonfc.park.controller.form.EstacionamentoForm;
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
