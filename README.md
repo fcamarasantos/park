@@ -1,3 +1,11 @@
+ 
+ Participantes 05
+ 
+  Lucas Penha 
+  Vitor Sierro
+  Sthefanne Batista
+  Igor Cerqueira
+  
 ### FCamara Hackathon FC 🚀
 *"Queremos ser como uma árvore, 
   crescer um pouco todos os dias e tentar tocar o céu, 
