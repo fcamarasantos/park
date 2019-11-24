@@ -107,9 +107,6 @@ public class EstacionamentoController {
 		return ResponseEntity.notFound().build();
 	}
 	
-	
-
-	
 	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> remover(@PathVariable Long id){
