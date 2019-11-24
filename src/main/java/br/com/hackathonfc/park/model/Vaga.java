@@ -25,12 +25,10 @@ public class Vaga {
 		private boolean livre;
 		
 		public Vaga() {
-			
 		}
 
-		public Vaga(Long id, LocalDateTime dataInicio,
-				LocalDateTime dataSaida, boolean livre) {
-			this.id = id;
+		public Vaga(Estacionamento estacionamento, LocalDateTime dataInicio, LocalDateTime dataSaida, boolean livre) {
+			this.estacionamento = estacionamento;
 			this.dataInicio = dataInicio;
 			this.dataSaida = dataSaida;
 			this.livre = livre;
