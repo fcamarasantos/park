@@ -13,30 +13,28 @@ import br.com.hackathonfc.park.repository.VeiculoRepository;
 
 public class VeiculoForm {
 	
+	@NotNull @NotEmpty
 	private String marca;
 	
-	
+	@NotNull @NotEmpty
 	private String modelo;
 	
-	
+	@NotNull @NotEmpty
 	private String cor;
 	
-	
+	@NotNull @NotEmpty
 	private String placa;
 	
-	
+	@NotNull 
 	private TipoVeiculo tipoVeiculo;
 	
-	
+	@NotNull 
 	private Long vagaId;
 	
 	public Veiculo converter(VagaRepository vagaRepository) {
-		Optional<Vaga> vaga = vagaRepository.findById(vagaId);
+		Vaga vaga = vagaRepository.getOne(vagaId);		
 		
-		if(vaga.isPresent())
-			return new Veiculo(marca, modelo, cor, placa, tipoVeiculo, vaga.get());
-		
-		return null;
+	    return new Veiculo(marca, modelo, cor, placa, tipoVeiculo, vaga);
 	}
 	
 	public Veiculo atualizar(Long id, VeiculoRepository veiculoRepository) {

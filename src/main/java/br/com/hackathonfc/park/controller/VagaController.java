@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.hackathonfc.park.controller.dto.VagaDto;
 import br.com.hackathonfc.park.controller.dto.VeiculoDto;
 import br.com.hackathonfc.park.controller.form.VeiculoForm;
+import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.repository.VagaRepository;
 import br.com.hackathonfc.park.repository.VeiculoRepository;
@@ -46,8 +48,8 @@ public class VagaController {
 	@CrossOrigin
 	@PostMapping
 	@Transactional
-	public ResponseEntity<VeiculoDto> cadastrarVeiculo(@RequestBody VeiculoForm form, UriComponentsBuilder uriBuilder) {
-		Veiculo veiculo = form.converter(vagaRepository);		
+	public ResponseEntity<VeiculoDto> cadastrarVeiculo(@RequestBody @Valid VeiculoForm form, UriComponentsBuilder uriBuilder) {
+		Veiculo veiculo = form.converter(vagaRepository);
 		veiculoRepository.save(veiculo);
 		
 		URI uri = uriBuilder.path("/vagas/{id}").buildAndExpand(veiculo.getId()).toUri();

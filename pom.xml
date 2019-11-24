@@ -40,7 +40,7 @@
 		</dependency>
 		
 		<dependency>
-<<<<<<< HEAD
+
    <groupId>org.springframework.boot</groupId>
    <artifactId>spring-boot-starter-thymeleaf</artifactId>
 </dependency>
@@ -50,13 +50,7 @@
 
     <artifactId>spring-boot-starter-thymeleaf</artifactId>
 </dependency>
-=======
-			<groupId>io.jsonwebtoken</groupId>
-			<artifactId>jjwt</artifactId>
-			<version> 0.9.1</version>
-		</dependency>
->>>>>>> 26fa99085d22b56b720747746f3c8c0459888c89
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
