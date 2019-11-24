@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Carro {
+public class Veiculo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,11 +19,11 @@ public class Carro {
 	@Enumerated(EnumType.STRING)
 	private TipoVeiculo veiculo;
 	
-	public Carro() {
+	public Veiculo() {
 		super();
 	}
 
-	public Carro(Long id, String marca, String cor, String placa, TipoVeiculo veiculo) {
+	public Veiculo(Long id, String marca, String cor, String placa, TipoVeiculo veiculo) {
 		super();
 		this.id = id;
 		this.marca = marca;
@@ -48,7 +48,7 @@ public class Carro {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Carro other = (Carro) obj;
+		Veiculo other = (Veiculo) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

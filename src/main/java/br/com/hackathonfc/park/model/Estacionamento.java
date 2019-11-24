@@ -1,9 +1,13 @@
 package br.com.hackathonfc.park.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Estacionamento {
@@ -16,6 +20,8 @@ public class Estacionamento {
 	private int telefone;
 	private int vagasMotos;
 	private int vagasCarros;
+	@OneToMany(mappedBy = "estacionamento")
+	private List<Vaga> vagas = new ArrayList<>();
 	
 	public Estacionamento() {
 		super();
