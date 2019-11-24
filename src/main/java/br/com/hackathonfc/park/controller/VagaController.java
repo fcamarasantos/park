@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.alura.forum.modelo.Topico;
 import br.com.hackathonfc.park.controller.dto.VagaDto;
 import br.com.hackathonfc.park.controller.dto.VeiculoDto;
 import br.com.hackathonfc.park.controller.form.VeiculoForm;
