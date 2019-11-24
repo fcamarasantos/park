@@ -11,3 +11,5 @@ INSERT INTO VAGA(estacionamento_id, data_inicio, data_saida, livre) VALUES('3', 
 INSERT INTO VEICULO(marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES('Marca 1', 'Modelo 1', 'Preto', 'FFFF-4444', 'MOTO', '1')
 INSERT INTO VEICULO(marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES('Marca 1', 'Modelo 2', 'Preto', 'FFFF-4444', 'MOTO', '2')
 INSERT INTO VEICULO(marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES('Marca 1', 'Modelo 3', 'Preto', 'FFFF-4444', 'CARRO', '4')
+
+INSERT INTO USUARIO(email, senha) VALUES('admin', '$2a$10$dgG1Pty3BWAqpxm9vbysjendacYXRj8o0EEF9nF.nwOYMChiJ2oXa')
