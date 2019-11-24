@@ -1,10 +1,7 @@
  
  Participantes 05
  
-  Lucas Penha 
-  Vitor Sierro
-  Sthefanne Batista
-  Igor Cerqueira
+  Lucas Penha, Vitor Sierro, Sthefanne Batista, Igor Cerqueira.
   
 ### FCamara Hackathon FC 🚀
 *"Queremos ser como uma árvore, 
