@@ -34,23 +34,10 @@ public class Estacionamento {
 	private List<Vaga> vagas = new ArrayList<>();
 	
 	public Estacionamento() {
-		super();
+		
 	}
 	
-	public Estacionamento(String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros, String endereco, Double precoHora) {
-		super();
-		this.nome = nome;
-		this.cnpj = cnpj;
-		this.endereco = endereco;
-		this.telefone = telefone;
-		this.vagasMotos = vagasMotos;
-		this.vagasCarros = vagasCarros;
-		this.precoHora = precoHora;
-	}
-
-	public Estacionamento(Long id, String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros, String endereco, Double precoHora) {
-		super();
-		this.id = id;
+	public Estacionamento(String nome, int cnpj, String endereco, int telefone, int vagasMotos, int vagasCarros, Double precoHora) {
 		this.nome = nome;
 		this.cnpj = cnpj;
 		this.endereco = endereco;

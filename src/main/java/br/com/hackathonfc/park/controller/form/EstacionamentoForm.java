@@ -20,10 +20,10 @@ public class EstacionamentoForm {
 	private int telefone;
 	
 	@NotNull @NotEmpty
-	private int vagasCarro;
+	private int vagasCarros;
 	
 	@NotNull @NotEmpty
-	private int vagasMoto;
+	private int vagasMotos;
 	
 	@NotNull @NotEmpty
 	private Double precoHora;
@@ -44,12 +44,12 @@ public class EstacionamentoForm {
 		return telefone;
 	}
 
-	public int getVagasCarro() {
-		return vagasCarro;
+	public int getVagasCarros() {
+		return vagasCarros;
 	}
 
-	public int getVagasMoto() {
-		return vagasMoto;
+	public int getVagasMotos() {
+		return vagasMotos;
 	}
 	
 	public Double getPrecoHora() {
@@ -57,7 +57,7 @@ public class EstacionamentoForm {
 	}
 	
 	public Estacionamento converter() {
-		return new Estacionamento(nome, cnpj, endereco, telefone, vagasMoto, vagasCarro, precoHora);
+		return new Estacionamento(nome, cnpj, endereco, telefone, vagasMotos, vagasCarros, precoHora);
 	}
 	
 }

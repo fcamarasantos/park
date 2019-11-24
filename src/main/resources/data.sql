@@ -1,6 +1,6 @@
-INSERT INTO ESTACIONAMENTO(nome, cnpj, telefone, vagasMotos, vagasCarros) VALUES("Estacionamento 1", 1234556, 123456, 10, 20)
-INSERT INTO ESTACIONAMENTO(nome, cnpj, telefone, vagasMotos, vagasCarros) VALUES("Estacionamento 1", 1234556, 123456, 10, 20)
-INSERT INTO ESTACIONAMENTO(nome, cnpj, telefone, vagasMotos, vagasCarros) VALUES("Estacionamento 1", 1234556, 123456, 10, 20)
+INSERT INTO ESTACIONAMENTO(nome, cnpj, endereco, telefone, vagasMotos, vagasCarros, precoHora) VALUES("Estacionamento 1", 1234556, "Rua Doutor Fulano, 505 - Aparecida, Santos/SP", 123456, 10, 20, 8.50)
+INSERT INTO ESTACIONAMENTO(nome, cnpj, endereco ,telefone, vagasMotos, vagasCarros, precoHora) VALUES("Estacionamento 1", 1234556, "Rua Doutor Fulano 2, 403 - Embaré, Santos/SP", 123456, 10, 20, 7.80)
+INSERT INTO ESTACIONAMENTO(nome, cnpj, endereco ,telefone, vagasMotos, vagasCarros, precoHora) VALUES("Estacionamento 1", 1234556, "Rua Doutor Fulano 3, 306 - Mocca, São Paulo/SP", 123456, 10, 20, 9.50)
 
 INSERT INTO VEICULO(marca, cor, placa) VALUES("Marca 1", "Preto", "FFFF-4444")
 INSERT INTO VEICULO(marca, cor, placa) VALUES("Marca 1", "Preto", "FFFF-4444")
