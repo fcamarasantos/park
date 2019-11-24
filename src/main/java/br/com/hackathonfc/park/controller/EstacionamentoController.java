@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
+
 import br.com.hackathonfc.park.controller.dto.VagaDto;
 import br.com.hackathonfc.park.controller.form.EstacionamentoForm;
 import br.com.hackathonfc.park.model.Estacionamento;
@@ -70,8 +71,7 @@ public class EstacionamentoController {
 	@GetMapping("/{id}")
 	public List<VagaDto> listarVagas(@PathVariable Long id) {
 		List<Vaga> vagas = vagaRepository.findAllFromEstacionamento(id);
-		return VagaDto.converter(vagas);
-	}
+		return VagaDto.converter(vagas);	}
 	
 	@CrossOrigin
 	@PostMapping
