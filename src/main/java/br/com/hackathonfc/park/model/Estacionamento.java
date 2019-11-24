@@ -15,23 +15,44 @@ public class Estacionamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String nome;
+	
 	private int cnpj;
+	
+	private String endereco;
+	
 	private int telefone;
+	
 	private int vagasMotos;
+	
 	private int vagasCarros;
+	
+	private Double precoHora;
+	
 	@OneToMany(mappedBy = "estacionamento")
 	private List<Vaga> vagas = new ArrayList<>();
 	
 	public Estacionamento() {
 		super();
 	}
+	
+	public Estacionamento(String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros, String endereco) {
+		super();
+		this.nome = nome;
+		this.cnpj = cnpj;
+		this.endereco = endereco;
+		this.telefone = telefone;
+		this.vagasMotos = vagasMotos;
+		this.vagasCarros = vagasCarros;
+	}
 
-	public Estacionamento(Long id, String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros) {
+	public Estacionamento(Long id, String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros, String endereco) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.cnpj = cnpj;
+		this.endereco = endereco;
 		this.telefone = telefone;
 		this.vagasMotos = vagasMotos;
 		this.vagasCarros = vagasCarros;
@@ -97,6 +118,22 @@ public class Estacionamento {
 	}
 	public void setVagasCarros(int vagasCarros) {
 		this.vagasCarros = vagasCarros;
+	}
+
+	public String getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
+	}
+
+	public Double getPrecoHora() {
+		return precoHora;
+	}
+
+	public void setPrecoHora(Double precoHora) {
+		this.precoHora = precoHora;
 	}
 
 }
