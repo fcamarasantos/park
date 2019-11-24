@@ -13,20 +13,18 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.hackathonfc.park.repository.*;
-import br.com.alura.forum.controllers.dto.TopicoDto;
-import br.com.alura.forum.controllers.form.AtualizacaoTopicoForm;
-import br.com.alura.forum.model.Topico;
+import br.com.hackathonfc.park.controller.form.AtualizacaoEstacionamentoForm;
 import br.com.hackathonfc.park.controller.form.EstacionamentoForm;
 import br.com.hackathonfc.park.model.Estacionamento;
 
@@ -62,14 +60,26 @@ public class EstacionamentoController {
 	@CrossOrigin
 	@PutMapping("/{id}") 
 	@Transactional
-	public ResponseEntity<TopicoDto> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoTopicoForm form){
-		Optional<Topico> optional = topicoRepository.findById(id);
+	public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstacionamentoForm form){
+		Optional<Estacionamento> optional = estacionamentoRepository.findById(id);
 		
 		if(optional.isPresent()) {
-			Topico topico = form.atualizar(id, topicoRepository);
-			return ResponseEntity.ok(new TopicoDto(topico));
+			Estacionamento estacionamento = form.atualizar(id, estacionamentoRepository);
+			return ResponseEntity.ok(estacionamento);
 		}
 		
+		return ResponseEntity.notFound().build();
+	}
+	
+	@DeleteMapping("/{id}")
+	@Transactional
+	public ResponseEntity<?> remover(@PathVariable Long id){
+		Optional<Estacionamento> optional = estacionamentoRepository.findById(id);
+		
+		if (optional.isPresent()) {
+			estacionamentoRepository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
 		return ResponseEntity.notFound().build();
 	}
 	
