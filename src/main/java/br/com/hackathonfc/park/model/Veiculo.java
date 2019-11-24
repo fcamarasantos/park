@@ -30,7 +30,6 @@ public class Veiculo {
 	private Vaga vaga;
 	
 	public Veiculo() {
-		super();
 	}
 
 	public Veiculo(String marca, String modelo, String cor, String placa, TipoVeiculo tipoVeiculo, Vaga vaga) {

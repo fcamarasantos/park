@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
   <meta charset="UTF-8">
   <title>Gerenciador de Estacionamento</title>
@@ -18,7 +18,7 @@
       <div class="content">
         <nav>
           <ul>
-            <li ><a href="/cadastro.html">Cadastrar Estacionamento </a> </li>
+            <li >Cadastrar Estacionamento</li>
           </ul>
         </nav>
       </div>
@@ -26,7 +26,7 @@
     <section class="main">
       <div class="estacionamento">
         <div class="info">
-          <h1>Estacionamento Fulano</h1>
+          <h1>Estacionamento</h1>
           <div class="tags">
             <div class="vagas">
               <ul>
@@ -39,6 +39,7 @@
         </div>
         <a href="/gerenciar.html">Gerenciar</a>
       </div>
+      
       <div class="estacionamento">
         <div class="info">
           <h1>Estacionamento Fulano</h1>
@@ -54,6 +55,7 @@
         </div>
         <a href="/gerenciar.html">Gerenciar</a>
       </div>
+      
       <div class="estacionamento">
         <div class="info">
           <h1>Estacionamento Fulano</h1>
@@ -69,9 +71,10 @@
         </div>
         <a href="/gerenciar.html">Gerenciar</a>
       </div>
+      
       <div class="estacionamento">
         <div class="info">
-          <h1>Estacionamento Fulano</h1>
+          <h1><span th:text="Estacionamento "></span></h1>
           <div class="tags">
             <div class="vagas">
               <ul>
@@ -93,5 +96,7 @@
     </footer>
   </div>
 </body>
+<script>
 
+</script>
 </html>

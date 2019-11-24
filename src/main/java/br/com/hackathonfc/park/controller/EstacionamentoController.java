@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -44,16 +45,13 @@ public class EstacionamentoController {
 	private VagaRepository vagaRepository;
 	
 	
-	
-	@RequestMapping("/")
-	   public ModelAndView index(){
-	   return new ModelAndView("index");
+	@RequestMapping(value="/cadastro", method=RequestMethod.POST )
+	   public String form(){
+	   return"cadastro";
 	}
 	
-	@RequestMapping(value="/cadastro" )
-	   public ModelAndView Cadastro(){
-	   return new ModelAndView("cadastro");
-	}
+	
+
 	
 	
 	@CrossOrigin
@@ -68,7 +66,7 @@ public class EstacionamentoController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/{id}")
+	@GetMapping("/{id}/vagas")
 	public List<VagaDto> listarVagas(@PathVariable Long id) {
 		List<Vaga> vagas = vagaRepository.findAllFromEstacionamento(id);
 		return VagaDto.converter(vagas);	
