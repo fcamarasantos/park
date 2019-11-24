@@ -29,38 +29,27 @@ import br.com.hackathonfc.park.repository.VagaRepository;
 import br.com.hackathonfc.park.repository.VeiculoRepository;
 
 @RestController
-@RequestMapping("/estacionamentos/vagas")
+@RequestMapping("/estacionamentos/{id}/vagas")
 public class VagaController {
-	
-	@Autowired
-	private VagaRepository vagaRepository;
-	
+		
 	@Autowired
 	private VeiculoRepository veiculoRepository;
 	
-	@CrossOrigin
-	@GetMapping
-	public List<VagaDto> lista() {
-		List<Vaga> vagas = vagaRepository.findAll();
-		return VagaDto.converter(vagas);
-	}
-
+	@Autowired
+	private VagaRepository vagaRepository;
+		
 	@CrossOrigin
 	@GetMapping("/{id}")
-	public ResponseEntity<VeiculoDto> listaVeiculo(@PathVariable Long id) {
-		Optional<Veiculo> veiculo = veiculoRepository.findById(id);
-		if(veiculo.isPresent()) {
-			return ResponseEntity.ok(new VeiculoDto(veiculo.get()));
-		}
-		
-		return ResponseEntity.ok().build();
+	public List<VeiculoDto> listarVeiculo(@PathVariable Long id) {
+		List<Veiculo> veiculos = veiculoRepository.findByVagaId(id);
+		return VeiculoDto.converter(veiculos);
 	}
 	
 	@CrossOrigin
 	@PostMapping
 	@Transactional
 	public ResponseEntity<VeiculoDto> cadastrarVeiculo(@RequestBody @Valid VeiculoForm form, UriComponentsBuilder uriBuilder) {
-		Veiculo veiculo = form.converter(veiculoRepository);
+		Veiculo veiculo = form.converter(vagaRepository);
 		veiculoRepository.save(veiculo);
 		
 		URI uri = uriBuilder.path("/vagas/{id}").buildAndExpand(veiculo.getId()).toUri();

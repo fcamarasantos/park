@@ -6,6 +6,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Veiculo {
@@ -13,22 +14,31 @@ public class Veiculo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String marca;
+	
 	private String modelo;
+	
 	private String cor;
+	
 	private String placa;
+	
 	@Enumerated(EnumType.STRING)
 	private TipoVeiculo tipoVeiculo;
+	
+	@OneToOne
+	private Vaga vaga;
 	
 	public Veiculo() {
 		super();
 	}
 
-	public Veiculo(String marca, String modelo, String cor, String placa) {
+	public Veiculo(String marca, String modelo, String cor, String placa, Vaga vaga) {
 		this.marca = marca;
 		this.setModelo(modelo);
 		this.cor = cor;
 		this.placa = placa;
+		this.vaga = vaga;
 	}
 
 	@Override
@@ -102,6 +112,22 @@ public class Veiculo {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	public TipoVeiculo getTipoVeiculo() {
+		return tipoVeiculo;
+	}
+
+	public void setTipoVeiculo(TipoVeiculo tipoVeiculo) {
+		this.tipoVeiculo = tipoVeiculo;
+	}
+
+	public Vaga getVaga() {
+		return vaga;
+	}
+
+	public void setVaga(Vaga vaga) {
+		this.vaga = vaga;
 	}
 
 }

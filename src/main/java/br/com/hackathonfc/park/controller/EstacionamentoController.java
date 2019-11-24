@@ -1,6 +1,7 @@
 package br.com.hackathonfc.park.controller;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -23,9 +24,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import br.com.hackathonfc.park.controller.dto.VagaDto;
 import br.com.hackathonfc.park.controller.form.EstacionamentoForm;
 import br.com.hackathonfc.park.model.Estacionamento;
+import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
+import br.com.hackathonfc.park.repository.VagaRepository;
 
 @RestController
 @RequestMapping("/estacionamentos")
@@ -33,6 +37,9 @@ public class EstacionamentoController {
 	
 	@Autowired
 	private EstacionamentoRepository estacionamentoRepository;
+	
+	@Autowired
+	private VagaRepository vagaRepository;
 	
 	@CrossOrigin
 	@GetMapping
@@ -43,6 +50,13 @@ public class EstacionamentoController {
 		estacionamentos = estacionamentoRepository.findAll(paginacao);
 		
 		return estacionamentos;
+	}
+	
+	@CrossOrigin
+	@GetMapping("/{id}")
+	public List<VagaDto> listarVagas(@PathVariable Long id) {
+		List<Vaga> vagas = vagaRepository.findAllFromEstacionamento(id);
+		return VagaDto.converter(vagas);
 	}
 	
 	@CrossOrigin
