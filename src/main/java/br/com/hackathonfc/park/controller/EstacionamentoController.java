@@ -54,7 +54,7 @@ public class EstacionamentoController {
 		
 		URI uri = uriBuilder.path("/estacionamentos/{id}").buildAndExpand(estacionamento.getId()).toUri();
 		
-		return ResponseEntity.created(uri).body(new Estacionamento());
+		return ResponseEntity.created(uri).body(estacionamento);
 	}
 	
 	@CrossOrigin
