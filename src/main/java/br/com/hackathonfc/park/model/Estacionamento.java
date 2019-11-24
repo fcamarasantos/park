@@ -37,7 +37,7 @@ public class Estacionamento {
 		super();
 	}
 	
-	public Estacionamento(String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros, String endereco) {
+	public Estacionamento(String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros, String endereco, Double precoHora) {
 		super();
 		this.nome = nome;
 		this.cnpj = cnpj;
@@ -45,9 +45,10 @@ public class Estacionamento {
 		this.telefone = telefone;
 		this.vagasMotos = vagasMotos;
 		this.vagasCarros = vagasCarros;
+		this.precoHora = precoHora;
 	}
 
-	public Estacionamento(Long id, String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros, String endereco) {
+	public Estacionamento(Long id, String nome, int cnpj, int telefone, int vagasMotos, int vagasCarros, String endereco, Double precoHora) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -56,6 +57,7 @@ public class Estacionamento {
 		this.telefone = telefone;
 		this.vagasMotos = vagasMotos;
 		this.vagasCarros = vagasCarros;
+		this.precoHora = precoHora;
 	}
 	
 	@Override
