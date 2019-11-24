@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
 
-public class EstacionamentoForm {
+public class AtualizacaoEstacionamentoForm {
 	
 	@NotNull @NotEmpty
 	private String nome;
@@ -19,12 +19,6 @@ public class EstacionamentoForm {
 	
 	@NotNull 
 	private int telefone;
-	
-	@NotNull 
-	private int vagasCarros;
-	
-	@NotNull 
-	private int vagasMotos;
 	
 	@NotNull 
 	private Double precoHora;
@@ -44,21 +38,9 @@ public class EstacionamentoForm {
 	public int getTelefone() {
 		return telefone;
 	}
-
-	public int getVagasCarros() {
-		return vagasCarros;
-	}
-
-	public int getVagasMotos() {
-		return vagasMotos;
-	}
 	
 	public Double getPrecoHora() {
 		return precoHora;
-	}
-	
-	public Estacionamento converter() {
-		return new Estacionamento(nome, cnpj, endereco, telefone, vagasMotos, vagasCarros, precoHora);
 	}
 	
 	public Estacionamento atualizar(Long id, EstacionamentoRepository estacionamentoRepository) {
@@ -70,5 +52,5 @@ public class EstacionamentoForm {
 		estacionamento.setPrecoHora(precoHora);
 		return estacionamento;
 	}
-	
+
 }
