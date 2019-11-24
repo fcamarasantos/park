@@ -27,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.hackathonfc.park.controller.dto.VagaDto;
+import br.com.hackathonfc.park.controller.form.AtualizacaoEstacionamentoForm;
 import br.com.hackathonfc.park.controller.form.EstacionamentoForm;
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.model.Vaga;
@@ -68,24 +69,32 @@ public class EstacionamentoController {
 	@GetMapping("/{id}")
 	public List<VagaDto> listarVagas(@PathVariable Long id) {
 		List<Vaga> vagas = vagaRepository.findAllFromEstacionamento(id);
-		return VagaDto.converter(vagas);	}
+		return VagaDto.converter(vagas);	
+	}
 	
 	@CrossOrigin
 	@PostMapping
 	@Transactional
-	public ResponseEntity<Estacionamento>  cadastrar(@RequestBody EstacionamentoForm form, UriComponentsBuilder uriBuilder) {
-		Estacionamento estacionamento = form.converter();
+	public ResponseEntity<Estacionamento> cadastrar(@RequestBody EstacionamentoForm estacionamentoForm,
+			UriComponentsBuilder uriBuilder) {
+		Estacionamento estacionamento = estacionamentoForm.converter();
 		estacionamentoRepository.save(estacionamento);
 		
-		URI uri = uriBuilder.path("/estacionamentos/{id}").buildAndExpand(estacionamento.getId()).toUri();
+		int vagasTotal = estacionamento.getVagasCarros() + estacionamento.getVagasMotos();
 		
+		for(int i = 0; i < vagasTotal; i++) {
+			Vaga vaga = new Vaga(estacionamento, null, null, true);
+			vagaRepository.save(vaga);
+		}
+		
+		URI uri = uriBuilder.path("/estacionamentos/{id}").buildAndExpand(estacionamento.getId()).toUri();
 		return ResponseEntity.created(uri).body(estacionamento);
 	}
 	
 	@CrossOrigin
 	@PutMapping("/{id}") 
 	@Transactional
-	public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid EstacionamentoForm form){
+	public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstacionamentoForm form){
 		Optional<Estacionamento> optional = estacionamentoRepository.findById(id);
 		
 		if(optional.isPresent()) {
@@ -108,6 +117,7 @@ public class EstacionamentoController {
 			estacionamentoRepository.deleteById(id);
 			return ResponseEntity.ok().build();
 		}
+		
 		return ResponseEntity.notFound().build();
 	}
 	
