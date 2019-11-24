@@ -21,7 +21,6 @@ public class VeiculoDto {
 	private String placa;
 	
 	public VeiculoDto(Veiculo veiculo) {
-		super();
 		this.id = veiculo.getId();
 		this.tipoVeiculo = veiculo.getTipoVeiculo();
 		this.modelo = veiculo.getModelo();

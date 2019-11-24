@@ -50,7 +50,11 @@
 
     <artifactId>spring-boot-starter-thymeleaf</artifactId>
 </dependency>
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 7d6d3981b7cd75937fd0902e411d7c389f4a2b1d
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>

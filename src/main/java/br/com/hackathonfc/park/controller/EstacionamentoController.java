@@ -66,7 +66,7 @@ public class EstacionamentoController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/{id}")
+	@GetMapping("/{id}/vagas")
 	public List<VagaDto> listarVagas(@PathVariable Long id) {
 		List<Vaga> vagas = vagaRepository.findAllFromEstacionamento(id);
 		return VagaDto.converter(vagas);	
