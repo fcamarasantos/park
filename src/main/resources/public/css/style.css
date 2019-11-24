@@ -1,0 +1,83 @@
+body {
+    padding-top: 75px;
+}
+
+.box-shadow {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05), 0 4px 8px 0 rgba(0, 0, 0, .05);
+}
+
+.lista-plano li+li {
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.lista-plano li {
+    padding: 1rem;
+}
+
+.logo {
+    font-family: 'Tangerine', cursive;
+    font-size: 60px;
+    font-weight: bold;
+    margin-right: 0.10rem;
+}
+
+.menu {
+    background: linear-gradient(to right, #00112b, #03398c);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+.menu nav {
+    text-align: right;
+    padding: 10px 20px 0 0;
+}
+
+.menu nav ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.menu nav li {
+    display: inline-block;
+    text-align: right;
+}
+
+.menu nav li a {
+    display: block;
+    color: white;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-family: monospace;
+    text-transform: uppercase;
+    font-size: 1.3em;
+    letter-spacing: 2px;
+    float: left;
+}
+
+.menu nav li a::after {
+    content: '';
+    display: block;
+    background: white;
+    height: 2px;
+    width: 0;
+    transition: .3s;
+}
+
+.menu nav li a:hover::after,
+.menu nav li a.active::after {
+    width: 100%;
+}
+
+#cadastra {
+    margin-left: 13rem !important;
+}
+
+footer .list-unstyled {
+    font-size: 20px;
+}
+
+.lista-plano:nth-child(odd) ul {
+    margin-bottom: 4rem !important;
+}
