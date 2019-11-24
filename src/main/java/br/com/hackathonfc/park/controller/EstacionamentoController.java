@@ -50,8 +50,9 @@ public class EstacionamentoController {
 	@Transactional
 	public ResponseEntity<Estacionamento>  cadastrar(@RequestBody EstacionamentoForm form, UriComponentsBuilder uriBuilder) {
 		Estacionamento estacionamento = form.converter();
+		estacionamentoRepository.save(estacionamento);
 		
-		URI uri = uriBuilder.path("/topicos/{id}").buildAndExpand(estacionamento.getId()).toUri();
+		URI uri = uriBuilder.path("/estacionamentos/{id}").buildAndExpand(estacionamento.getId()).toUri();
 		
 		return ResponseEntity.created(uri).body(new Estacionamento());
 	}
