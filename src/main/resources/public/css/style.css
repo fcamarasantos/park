@@ -1,23 +1,9 @@
+body {
+    padding-top: 75px;
+}
 
 .box-shadow {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05), 0 4px 8px 0 rgba(0, 0, 0, .05);
-}
-
-#home-quote {
-    background: url('../img/bg-quote.jpg') center center;
-    background-size: cover;
-}
-
-@media (min-width:768px) {
-    #home-quote .display-4 {
-        font-size: 2.5rem;
-    }
-    body {
-        padding: 0px;
-    }
-    .fixed-top {
-        position: relative;
-    }
 }
 
 .lista-plano li+li {
@@ -30,8 +16,9 @@
 
 .logo {
     font-family: 'Tangerine', cursive;
-    font-size: 50px;
+    font-size: 60px;
     font-weight: bold;
+    margin-right: 0.10rem;
 }
 
 .menu {
@@ -40,10 +27,6 @@
     width: 100%;
     top: 0;
     z-index: 100;
-}
-
-.menu img {
-    opacity: 0.30;
 }
 
 .menu nav {
@@ -87,11 +70,10 @@
     width: 100%;
 }
 
-#modalLogin .aviso {
-    font-size: 15px;
+#cadastra {
+    margin-left: 13rem !important;
 }
 
-#modalLogin h3 {
-    font-size: 15px;
-    color: red;
+footer .list-unstyled {
+    font-size: 20px;
 }
