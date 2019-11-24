@@ -46,7 +46,7 @@ public class VagaController {
 	@CrossOrigin
 	@PostMapping
 	@Transactional
-	public ResponseEntity<VeiculoDto> cadastrarVeiculo(@RequestBody @Valid VeiculoForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<VeiculoDto> cadastrarVeiculo(@RequestBody VeiculoForm form, UriComponentsBuilder uriBuilder) {
 		Veiculo veiculo = form.converter(vagaRepository);		
 		veiculoRepository.save(veiculo);
 		

@@ -1,5 +1,7 @@
 package br.com.hackathonfc.park.controller.form;
 
+import java.util.Optional;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -11,27 +13,30 @@ import br.com.hackathonfc.park.repository.VeiculoRepository;
 
 public class VeiculoForm {
 	
-	@NotNull @NotEmpty
 	private String marca;
 	
-	@NotNull @NotEmpty
+	
 	private String modelo;
 	
-	@NotNull @NotEmpty
+	
 	private String cor;
 	
-	@NotNull @NotEmpty
+	
 	private String placa;
 	
-	@NotNull
+	
 	private TipoVeiculo tipoVeiculo;
 	
-	@NotNull
+	
 	private Long vagaId;
 	
 	public Veiculo converter(VagaRepository vagaRepository) {
-		Vaga vaga = vagaRepository.getOne(vagaId);
-		return new Veiculo(marca, modelo, cor, placa, tipoVeiculo, vaga);
+		Optional<Vaga> vaga = vagaRepository.findById(vagaId);
+		
+		if(vaga.isPresent())
+			return new Veiculo(marca, modelo, cor, placa, tipoVeiculo, vaga.get());
+		
+		return null;
 	}
 	
 	public Veiculo atualizar(Long id, VeiculoRepository veiculoRepository) {
