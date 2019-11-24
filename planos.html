@@ -11,6 +11,33 @@
 </head>
 
 <body>
+    <!--Modal-->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginTitulo" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLoginTitulo">Entre na Sua Conta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="loginEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginSenha">Senha</label>
+                            <input type="password" class="form-control" id="loginSenha">
+                        </div>
+                        <button type="submit" class="btn btn-primary"><a class="modal" href="cadastro.html">Entrar na Conta</a></button>
+                        <small class="form-text text-muted">Esqueceu a senha? <a href="#">Clique aqui</a>.</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!--Navegador-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-1 box-shadow">
         <a href="index.html" class="navbar-brand">
@@ -28,7 +55,7 @@
                     <a class="btn btn-putline-primary ml-md-2" href="cadastroEmpresa.html">Cadastra Empresa</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-putline-primary ml-md-2" href="cadastro.html">Entrar</a>
+                    <a class="btn btn-putline-primary ml-md-2" href="#modalLogin" data-toggle="modal" data-target="#modalLogin">Login</a>
                 </li>
             </ul>
         </div>

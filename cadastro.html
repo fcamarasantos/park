@@ -11,33 +11,6 @@
 </head>
 
 <body>
-    <!--Modal-->
-    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginTitulo" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="modalLoginTitulo">Entre na Sua Conta</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="form-group">
-                      <label for="loginEmail">Email</label>
-                      <input type="email" class="form-control" id="loginEmail">
-                    </div>
-                    <div class="form-group">
-                      <label for="loginSenha">Senha</label>
-                      <input type="password" class="form-control" id="loginSenha">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Entrar na Conta</button>
-                    <small class="form-text text-muted">Esqueceu a senha? <a href="#">Clique aqui</a>.</small>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
     <!--Navegador-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-1 box-shadow">
         <a href="index.html" class="navbar-brand">
@@ -54,9 +27,6 @@
                 <li class="nav-item">
                     <a class="btn btn-putline-primary ml-md-2" href="cadastroEmpresa.html">Cadastra Empresa</a>
                 </li>
-                <li class="nav-item">
-                    <a class="btn btn-putline-primary ml-md-2" href="cadastro.html">Entrar</a>
-                </li>
             </ul>
         </div>
     </nav>
@@ -66,31 +36,31 @@
             <h1 class="display-4 text-primary">Cadastre seu veiculo</h1>
         </div>
         <div class="row">
-            <form class="col-lg-6" action="ParkApplication.java">
+            <form class="col-lg-6" action="">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="inputNome">Nome</label>
-                        <input type="text" class="form-control" id="inputNome" placeholder="Nome completo" required>
+                        <input type="text" class="form-control" id="inputNome" placeholder="Nome completo">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputCPF">CPF</label>
-                        <input type="text" class="form-control" id="inputCPF" placeholder=" XXX.XXX.XXX-XX" required>
+                        <input type="text" class="form-control" id="inputCPF" placeholder=" XXX.XXX.XXX-XX">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputEmail">Endereço</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="Endereço" required>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="Endereço">
                     </div>
                     <div class="form-group col-md-6">
                         <label for="inputSenha">CEP</label>
-                        <input type="text" class="form-control" id="inputCep" placeholder="XXXXX-XXX" required>
+                        <input type="password" class="form-control" id="inputSenha" placeholder="XXXXX-XXX">
                     </div>
                     <div class="form-group col-6">
                         <label for="inputEndereco">CIDADE</label>
-                        <input type="text" class="form-control" id="inputEndereco" placeholder="Informe sua cidade" required>
+                        <input type="text" class="form-control" id="inputEndereco" placeholder="Informe sua cidade">
                     </div>
                     <div class="form-group col-6">
                         <label for="inputCidade">Estado</label>
-                        <select id="inputCidade" class="form-control" required>
+                        <select id="inputCidade" class="form-control">
                           <option>Selecione o Estado</option>
                           <option>Rio de Janeiro</option>
                           <option>São Paulo</option>
@@ -101,29 +71,29 @@
                     </div>
                     <div class="form-group col-6">
                         <label for="inputPlaca">Modelo</label>
-                        <input type="text" class="form-control" id="inputCidade" placeholder="Ex: Gol" required>
+                        <input type="text" class="form-control" id="inputCidade" placeholder="Ex: Gol">
                     </div>
 
                     <div class="form-group col-6">
                         <label for="inputTipo">Tipo</label>
-                        <input type="text" class="form-control" id="inputCidade" placeholder="" required>
+                        <input type="text" class="form-control" id="inputCidade" placeholder="">
                     </div>
 
                     <div class="form-group col-md-3 col-md-6">
                         <label for="inputMarca">Marca</label>
-                        <input type="text" class="form-control" id="Ex: volkswagen" required>
+                        <input type="text" class="form-control" id="Ex: volkswagen">
                     </div>
                     <div class="form-group col-md-3 col-6">
                         <label for="inputModel">Placa</label>
-                        <input type="text" class="form-control placa" id="inputCidade" placeholder="AAA0000" required>
+                        <input type="text" class="form-control" id="inputCidade" placeholder="AAA0000">
                     </div>
                     <div class="form-group col-md-3 col-6">
                         <label for="inputCor">Cor</label>
-                        <input type="text" class="form-control" id="inputCidade" placeholder="Ex: Azul" required>
+                        <input type="text" class="form-control" id="inputCidade" placeholder="Ex: Azul">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                    <input type="checkbox" class="form-check-input" required>
+                    <input type="checkbox" class="form-check-input">
                     Concordo com os <a href="#">Termos e Condições</a>.
                   </label>
                     </div>
@@ -160,7 +130,7 @@
                     <h4 class="h6">PÁGINAS</h4>
                     <ul class="list-unstyled">
                         <li><a href="planos.html">Planos</a></li>
-                        <li><a class="nav-link" href="#" data-toggle="modal" data-target="#modalLogin">Login</a></li>
+                        <li><a href="cadastro.html">Entrar</a></li>
                     </ul>
                 </div>
 
@@ -179,11 +149,10 @@
             <p class="mb-0">Fcamara © 2019. Alguns direitos reservados.</p>
         </div>
     </footer>
+    <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
     <script type="text/javascript" src="js/popper.min.js"></script>
-    <script src='js/jquery-3.4.1.min.js'></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.mask.min.js"></script>
-    <script type="text/javascript" src="js/cadastro.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
 
 </html>

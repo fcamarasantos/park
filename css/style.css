@@ -81,3 +81,9 @@ footer .list-unstyled {
 .lista-plano:nth-child(odd) ul {
     margin-bottom: 4rem !important;
 }
+
+#modal a:link,
+#modal a:hover,
+#modal a:focus {
+    text-decoration: none;
+}
