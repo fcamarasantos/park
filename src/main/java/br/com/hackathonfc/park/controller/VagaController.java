@@ -29,7 +29,7 @@ import br.com.hackathonfc.park.repository.VagaRepository;
 import br.com.hackathonfc.park.repository.VeiculoRepository;
 
 @RestController
-@RequestMapping("/vagas")
+@RequestMapping("/estacionamentos/vagas")
 public class VagaController {
 	
 	@Autowired
