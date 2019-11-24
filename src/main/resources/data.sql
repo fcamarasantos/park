@@ -8,6 +8,6 @@ INSERT INTO VAGA(estacionamento_id, data_inicio, data_saida, livre) VALUES('1', 
 INSERT INTO VAGA(estacionamento_id, data_inicio, data_saida, livre) VALUES('2', null, null, true)
 INSERT INTO VAGA(estacionamento_id, data_inicio, data_saida, livre) VALUES('3', null, null, true)
 
-INSERT INTO VEICULO(marca, modelo, cor, placa, vaga_id) VALUES('Marca 1', 'Modelo 1', 'Preto', 'FFFF-4444', '1')
-INSERT INTO VEICULO(marca, modelo, cor, placa, vaga_id) VALUES('Marca 1', 'Modelo 2', 'Preto', 'FFFF-4444', '2')
-INSERT INTO VEICULO(marca, modelo, cor, placa, vaga_id) VALUES('Marca 1', 'Modelo 3', 'Preto', 'FFFF-4444', '4')
+INSERT INTO VEICULO(marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES('Marca 1', 'Modelo 1', 'Preto', 'FFFF-4444', 'MOTO', '1')
+INSERT INTO VEICULO(marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES('Marca 1', 'Modelo 2', 'Preto', 'FFFF-4444', 'MOTO', '2')
+INSERT INTO VEICULO(marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES('Marca 1', 'Modelo 3', 'Preto', 'FFFF-4444', 'CARRO', '4')

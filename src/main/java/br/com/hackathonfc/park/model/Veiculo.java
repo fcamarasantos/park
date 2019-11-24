@@ -24,7 +24,7 @@ public class Veiculo {
 	private String placa;
 	
 	@Enumerated(EnumType.STRING)
-	private TipoVeiculo tipoVeiculo;
+	private TipoVeiculo tipoVeiculo = TipoVeiculo.MOTO;
 	
 	@OneToOne
 	private Vaga vaga;
@@ -33,11 +33,12 @@ public class Veiculo {
 		super();
 	}
 
-	public Veiculo(String marca, String modelo, String cor, String placa, Vaga vaga) {
+	public Veiculo(String marca, String modelo, String cor, String placa, TipoVeiculo tipoVeiculo, Vaga vaga) {
 		this.marca = marca;
-		this.setModelo(modelo);
+		this.modelo = modelo;
 		this.cor = cor;
 		this.placa = placa;
+		this.tipoVeiculo = tipoVeiculo;
 		this.vaga = vaga;
 	}
 
