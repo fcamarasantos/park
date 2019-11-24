@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import br.com.hackathonfc.park.controller.form.EstacionamentoForm;
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
@@ -43,6 +42,17 @@ public class EstacionamentoController {
 		estacionamentos = estacionamentoRepository.findAll(paginacao);
 		
 		return estacionamentos;
+	}
+	
+	@CrossOrigin
+	@GetMapping("/{id}")
+	public ResponseEntity<Estacionamento> detalhar(@PathVariable Long id) {
+		Optional<Estacionamento> estacionamento = estacionamentoRepository.findById(id);
+		
+		if (estacionamento.isPresent())
+			return ResponseEntity.ok(estacionamento.get());
+		
+		return ResponseEntity.notFound().build();
 	}
 	
 	@CrossOrigin
