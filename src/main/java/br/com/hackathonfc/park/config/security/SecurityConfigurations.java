@@ -27,6 +27,8 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 		.antMatchers(HttpMethod.GET, "/estacionamentos").permitAll()
 		.antMatchers(HttpMethod.GET, "/estacionamentos/*").permitAll()
+		.antMatchers(HttpMethod.POST, "/estacionamentos/*").permitAll()
+		.antMatchers(HttpMethod.PUT, "/estacionamentos/*").permitAll()
 		.anyRequest().authenticated()
 		.and().formLogin();
 	}
