@@ -11,22 +11,22 @@ public class EstacionamentoForm {
 	@NotNull @NotEmpty
 	private String nome;
 	
-	@NotNull @NotEmpty
+	@NotNull 
 	private int cnpj;
 	
 	@NotNull @NotEmpty
 	private String endereco;
 	
-	@NotNull @NotEmpty
+	@NotNull 
 	private int telefone;
 	
-	@NotNull @NotEmpty
+	@NotNull 
 	private int vagasCarros;
 	
-	@NotNull @NotEmpty
+	@NotNull 
 	private int vagasMotos;
 	
-	@NotNull @NotEmpty
+	@NotNull 
 	private Double precoHora;
 
 	public String getNome() {
