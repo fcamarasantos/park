@@ -52,7 +52,7 @@ public class VagaController {
 		Veiculo veiculo = form.converter(vagaRepository);
 		veiculoRepository.save(veiculo);
 		
-		URI uri = uriBuilder.path("/vagas/{id}").buildAndExpand(veiculo.getId()).toUri();
+		URI uri = uriBuilder.path("/estacionamentos/{id}/vagas/{id}").buildAndExpand(veiculo.getId()).toUri();
 		return ResponseEntity.created(uri).body(new VeiculoDto(veiculo));
 	}
 	
