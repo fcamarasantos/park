@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fpark</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Tangerine&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!--Modal-->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginTitulo" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLoginTitulo">Cadastre sua Empresa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="loginText">Nome</label>
+                            <input type="text" class="form-control" id="loginEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginText">CNPJ</label>
+                            <input type="password" class="form-control" id="loginSenha">
+                        </div>
+                        <div class="form-group">
+                            <label for="TextEnd">Endereço</label>
+                            <input type="password" class="form-control" id="loginSenha">
+                        </div>
+                        <div class="form-group">
+                            <label for="NumberTel">Telefone</label>
+                            <input type="password" class="form-control" id="loginSenha">
+                        </div>
+                        <div class="form-group">
+                            <label for="Numbermotos">Quantidade de vagas para motos</label>
+                            <input type="password" class="form-control" id="loginSenha">
+                        </div>
+                        <div class="form-group">
+                            <label for="Numbercar">Quantidade de vagas para carros</label>
+                            <input type="password" class="form-control" id="loginSenha">
+                        </div>
+                        <label class="aviso" for="loginText"><b>TODOS</b><h3>os campos são de preenchimento obrigatório.</h3></label>
+                        <p><button type="submit" class="btn btn-primary mx-auto">Cadastre-se</button></p>
+                        <small class="form-text text-muted">Esqueceu a senha? <a href="#">Clique aqui</a>.</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Navegador-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-3 box-shadow">
+        <a href="index.html" class="navbar-brand">
+            <div class="logo">Fpark</div>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Abrir Navegação">
+                <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    /
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">California</a>
+                        <a class="dropdown-item" href="#">Paris</a> / <a class="dropdown-item" href="#">Dublin</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="planos.html">Planos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contato.html">Contato</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalLogin">Cadastro da Empresa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-putline-primary ml-md-2" href="inscricao.html">Consultar Cliente</a>
+                </li>
+    </nav>
+    <!--Carousel-->
+    <section class="carousel-inner container-fluid introducao slide img-fluid">
+        <div class="row bg-dark text-white">
+            <div class="p-1 ">
+
+                <div id="carouselCidades" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#carouselCidade" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselCidade" data-slide-to="1"></li>
+                        <li data-target="#carouselCidade" data-slide-to="2"></li>
+                    </ol>
+                    <div><img src="img/slide/slide1.png" alt="Estacionamento"></div>
+                    <div><img src="img/slide/slide2.png" alt="Estacionamento"></div>
+                    <div><img src="img/slide/slide3.png" alt="Estacionamento"></div>
+
+                    <a class="carousel-control-prev" href="#carouselCidade" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Anterior</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselCidade" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Próximo</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Galeria-->
+    <section class="py-5 bg-light text-center">
+        <div class="container">
+            <div class="my-5">
+                <span class="h6 d-block">TUDO DE MELHOR PARA VOCÊ</span>
+                <h2 class="display-4 text-primary">Aproveite as Vantagens</h2>
+            </div>
+            <div class="row">
+                <div class="col-xl-4 col-md-6">
+                    <div style="height: 100px;" class="d-flex justify-content-center">
+                        <img src="img/car.svg" alt="Passaporte">
+                    </div>
+                    <h3>Carros</h3>
+                    <p>Temos espaço para você guarda seu carro</p>
+                    <p>Preço por hora de R$ 10,00</p>
+                </div>
+
+                <div class="col-xl-4 col-md-6">
+                    <div style="height: 100px;" class="d-flex justify-content-center">
+                        <img src="img/motorcycle.svg" alt="Passagens">
+                    </div>
+                    <h3>Motos</h3>
+                    <p>Temos espaço para você guarda sua moto</p>
+                    <p>Preço por hora de R$ 8,00</p>
+                </div>
+
+                <div class="col-xl-4 col-md-6">
+                    <div style="height: 100px;" class="d-flex justify-content-center">
+                        <img src="img/bike.svg" alt="Translado">
+                    </div>
+                    <h3>Bicicletas</h3>
+                    <p>Temos espaço para você guarda sua bicicletas </p>
+                    <p>Preço por hora de R$ 5,00</p>
+                </div>
+            </div>
+            <a href="planos.html" class="btn btn-primary btn-lg mt-4">Contrate nossos Plano</a>
+        </div>
+    </section>
+    <!--Perguntas Frequentes-->
+    <section class="container">
+        <div class="my-5 text-center">
+            <span class="h6 d-block">AINDA ESTÁ COM DÚVIDAS?</span>
+            <h2 class="display-4 text-primary">Perguntas Frequentes</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6" id="perguntasFrequentes" data-children=".pergunta">
+                <div class="pergunta py-2">
+                    <a class="lead" data-toggle="collapse" data-parent="#perguntasFrequentes" href="#pergunta1" aria-expanded="true" aria-controls="pergunta1">→ É possível cancelar a viagem?</a>
+                    <div id="pergunta1" class="collapse show" role="tabpanel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="pergunta py-2">
+                    <a class="lead" data-toggle="collapse" data-parent="#perguntasFrequentes" href="#pergunta2" aria-expanded="true" aria-controls="pergunta2">→ Qual a garantia que tenho se perder o voo?</a>
+                    <div id="pergunta2" class="collapse" role="tabpanel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="pergunta py-2">
+                    <a class="lead" data-toggle="collapse" data-parent="#perguntasFrequentes" href="#pergunta3" aria-expanded="true" aria-controls="pergunta3">→ Qual a principal forma de viagem?</a>
+                    <div id="pergunta3" class="collapse" role="tabpanel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="pergunta py-2">
+                    <a class="lead" data-toggle="collapse" data-parent="#perguntasFrequentes" href="#pergunta4" aria-expanded="true" aria-controls="pergunta4">→ Qual o melhor destino de viagem?</a>
+                    <div id="pergunta4" class="collapse" role="tabpanel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+                <div class="pergunta py-2">
+                    <a class="lead" data-toggle="collapse" data-parent="#perguntasFrequentes" href="#pergunta5" aria-expanded="true" aria-controls="pergunta5">→ Vocês dão descontos para grupos grandes?</a>
+                    <div id="pergunta5" class="collapse" role="tabpanel">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pretium lorem non vestibulum scelerisque. Proin a vestibulum sem, eget tristique massa. Aliquam lacinia rhoncus nibh quis ornare.</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider"></div>
+            </div>
+        </div>
+        <div class="text-center my-4">
+            <p class="small m-1">FALE CONOSCO PARA MAIS DÚVIDAS</p>
+            <a class="btn btn-primary btn-lg" href="contato.html">Entre em Contato</a>
+        </div>
+    </section>
+    <!--Footer-->
+    <footer class="bg-dark text-white mt-5">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <h4 class="h6">PÁGINAS</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="planos.html">Planos</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                        <li><a href="cadastro.html">Cadastre-se</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="h6">DADOS DE CONTATO</h4>
+                    <ul class="list-unstyled text-secondary">
+                        <li>Fpark@Fpark.com.br</li>
+                        <li>13 99999-9999</li>
+                        <li>De Seg. à Sex. das 6h às 23:59h</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bg-primary text-center py-3">
+            <p class="mb-0">Fcamara © 2019. Alguns direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>
