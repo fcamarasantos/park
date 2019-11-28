@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Fpark</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Tangerine&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!--Modal-->
+    <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginTitulo" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLoginTitulo">Entre na Sua Conta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="loginEmail">Email</label>
+                            <input type="email" class="form-control" id="loginEmail">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginSenha">Senha</label>
+                            <input type="password" class="form-control" id="loginSenha">
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="modal"><a href="cadastro.html">Entrar na Conta</a></button>
+                        <small class="form-text text-muted ">Esqueceu a senha? <a href="#">Clique aqui</a>.</small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Navegador-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-1 box-shadow ">
+        <a href="index.html " class="navbar-brand ">
+            <div class="logo ml-5 ">Fpark</div>
+        </a>
+        <button class="navbar-toggler " type="button " data-toggle="collapse " data-target="#navbarSupportedContent " aria-controls="navbarSupportedContent " aria-expanded="false " aria-label="Abrir Navegação ">
+                        <span class="navbar-toggler-icon "></span>
+                </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent ">
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item ">
+                    <a class="btn btn-putline-primary ml-md-2 " href="planos.html ">Planos</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="btn btn-putline-primary ml-md-2 " href="cadastroEmpresa.html ">Cadastra Empresa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-putline-primary ml-md-2" href="#modalLogin" data-toggle="modal" data-target="#modalLogin">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Planos-->
+    <section class="py-5 bg-light text-center ">
+        <div class="container ">
+            <div class="my-5 ">
+                <span class="h6 d-block ">TUDO DE MELHOR PARA VOCÊ</span>
+                <h2 class="display-4 text-primary ">Aproveite as Vantagens</h2>
+            </div>
+            <div class="row ">
+                <div class="col-xl-4 col-md-6 ">
+                    <div style="height: 100px; " class="d-flex justify-content-center ">
+                        <img src="img/car.svg " alt="Passaporte ">
+                    </div>
+                    <h3>Carros</h3>
+                    <p>Temos espaço para você guarda seu carro</p>
+                    <p>Preço por hora de R$ 10,00</p>
+                </div>
+
+                <div class="col-xl-4 col-md-6 ">
+                    <div style="height: 100px; " class="d-flex justify-content-center ">
+                        <img src="img/motorcycle.svg " alt="Passagens ">
+                    </div>
+                    <h3>Motos</h3>
+                    <p>Temos espaço para você guarda sua moto</p>
+                    <p>Preço por hora de R$ 8,00</p>
+                </div>
+
+                <div class="col-xl-4 col-md-6 ">
+                    <div style="height: 100px; " class="d-flex justify-content-center ">
+                        <img src="img/bike.svg " alt="Translado ">
+                    </div>
+                    <h3>Bicicletas</h3>
+                    <p>Temos espaço para você guarda sua bicicletas </p>
+                    <p>Preço por hora de R$ 5,00</p>
+                </div>
+            </div>
+            <a href="planos.html " class="btn btn-primary btn-lg mt-4 ">Contrate nossos Plano</a>
+        </div>
+    </section>
+    <!--Perguntas Frequentes-->
+    <section class="container ">
+        <div class="my-5 text-center ">
+            <span class="h6 d-block ">AINDA ESTÁ COM DÚVIDAS?</span>
+            <h2 class="display-4 text-primary ">Perguntas Frequentes</h2>
+        </div>
+        <div class="row justify-content-center ">
+            <div class="col-md-6 " id="perguntasFrequentes " data-children=".pergunta ">
+                <div class="pergunta py-2 ">
+                    <a class="lead " data-toggle="collapse " data-parent="#perguntasFrequentes " href="#pergunta1 " aria-expanded="true " aria-controls="pergunta1 ">→ De que horário vocês funcionam?</a>
+                    <div id="pergunta1 " class="collapse show " role="tabpanel ">
+                        <p> Funcionamos de segunda a sexta das 6:00 horas até as 23:00 horas.</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider "></div>
+                <div class="pergunta py-2 ">
+                    <a class="lead " data-toggle="collapse " data-parent="#perguntasFrequentes " href="#pergunta2 " aria-expanded="true " aria-controls="pergunta2 ">→ Como funciona o cadastramento de empresas?</a>
+                    <div id="pergunta2 " class="collapse " role="tabpanel ">
+                        <p>A sua empresa cadastra no nosso site informando a quantidade de vagas é nos fazemos a junção da sua vaga a sua empresa.</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider "></div>
+                <div class="pergunta py-2 ">
+                    <a class="lead " data-toggle="collapse " data-parent="#perguntasFrequentes " href="#pergunta3 " aria-expanded="true " aria-controls="pergunta3 ">→ Como faço para chegar até o estacionamento?</a>
+                    <div id="pergunta3 " class="collapse " role="tabpanel ">
+                        <p><a href="encurtador.com.br/qtzX8 ">Nossa localização atual é essa</a></p>
+                    </div>
+                </div>
+                <div class="dropdown-divider "></div>
+                <div class="pergunta py-2 ">
+                    <a class="lead " data-toggle="collapse " data-parent="#perguntasFrequentes " href="#pergunta4 " aria-expanded="true " aria-controls="pergunta4 ">→ Vocês atendem outras cidades?</a>
+                    <div id="pergunta4 " class="collapse " role="tabpanel ">
+                        <p>Não no momento atendemos apenas em santos.</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider "></div>
+                <div class="pergunta py-2 ">
+                    <a class="lead " data-toggle="collapse " data-parent="#perguntasFrequentes " href="#pergunta5 " aria-expanded="true " aria-controls="pergunta5 ">→ Vocês dão descontos para grupos grandes?</a>
+                    <div id="pergunta5 " class="collapse " role="tabpanel ">
+                        <p>Sim dependendo da quantidade de veículos cadastrados de 5% a 15%</p>
+                    </div>
+                </div>
+                <div class="dropdown-divider "></div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!--Footer-->
+    <footer class="bg-dark text-white mt-5 ">
+        <div class="container py-4 ">
+            <div class="row justify-content-between w-100 pr-5 ">
+                <div class="col-md-2 col-2 py-2 mx-5 ">
+                    <h4 class="h6 ">PÁGINAS</h4>
+                    <ul class="list-unstyled ">
+                        <li><a href="planos.html ">Planos</a></li>
+                        <li><a href="cadastro.html ">Entrar</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 col-lg-2 mx-5 py-2 ">
+                    <h4 class="h6 ">DADOS DE CONTATO</h4>
+                    <ul class="list-unstyled text-secondary ">
+                        <li>Fpark@Fpark.com.br</li>
+                        <li>13 99999-9999</li>
+                        <li>De Seg. à Sex. das 6h às 23:59h</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="bg-primary text-center py-3 ">
+            <p class="mb-0 ">Fcamara © 2019. Alguns direitos reservados.</p>
+        </div>
+    </footer>
+    <script type="text/javascript " src="js/jquery-3.3.1.slim.min.js "></script>
+    <script type="text/javascript " src="js/popper.min.js "></script>
+    <script type="text/javascript " src="js/bootstrap.js "></script>
+    <script type="text/javascript " src="js/app.js "></script>
+</body>
+
+</html>
