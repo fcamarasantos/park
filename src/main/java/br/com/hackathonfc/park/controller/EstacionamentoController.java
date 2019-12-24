@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.com.hackathonfc.park.bo.EstacionamentoBO;
 import br.com.hackathonfc.park.service.EstacionamentoService;
 import br.com.hackathonfc.park.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,52 +39,35 @@ import br.com.hackathonfc.park.repository.VagaRepository;
 public class EstacionamentoController {
 
 	@Autowired
-	private EstacionamentoService estacionamentoService;
-
-	@Autowired
-	private VagaService vagaService;
+	private EstacionamentoBO estacionamentoBO;
 
 	@CrossOrigin
 	@GetMapping
 	public Page<EstacionamentoDTO> listar(@PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable paginacao){
-		return estacionamentoService.listar(paginacao);
+		return estacionamentoBO.listarEstacionamentos(paginacao);
 	}
 	
 	@CrossOrigin
 	@GetMapping("/{id}/vagas")
 	public List<VagaDTO> listarVagas(@PathVariable Long id) {
-		return vagaService.listar(id);
+		return estacionamentoBO.listarVagas(id);
 	}
 	
 	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<EstacionamentoDTO> cadastrar(@RequestBody List<EstacionamentoDTO> estacionamentoDTO) {
-		return estacionamentoService.cadastrar(estacionamentoDTO);
+		return estacionamentoBO.cadastrar(estacionamentoDTO);
 	}
 	
 	@CrossOrigin
 	@PutMapping("/{id}") 
-	public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizacaoEstacionamentoForm form){
-		Optional<Estacionamento> optional = estacionamentoRepository.findById(id);
-		
-		if(optional.isPresent()) {
-			Estacionamento estacionamento = form.atualizar(id, estacionamentoRepository);
-			return ResponseEntity.ok(estacionamento);
-		}
-		
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid EstacionamentoDTO estacionamentoDTO){
+		return estacionamentoBO.atualizar(id, estacionamentoDTO);
 	}
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> remover(@PathVariable Long id){
-		Optional<Estacionamento> optional = estacionamentoRepository.findById(id);
-		
-		if (optional.isPresent()) {
-			estacionamentoRepository.deleteById(id);
-			return ResponseEntity.ok().build();
-		}
-		
-		return ResponseEntity.notFound().build();
+		return estacionamentoBO.deletar(id);
 	}
 	
 }
