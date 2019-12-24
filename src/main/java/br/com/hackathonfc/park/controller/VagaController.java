@@ -20,10 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.hackathonfc.park.controller.dto.VagaDto;
-import br.com.hackathonfc.park.controller.dto.VeiculoDto;
-import br.com.hackathonfc.park.controller.form.VeiculoForm;
-import br.com.hackathonfc.park.model.Vaga;
+import br.com.hackathonfc.park.dto.VeiculoDTO;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.repository.VagaRepository;
 import br.com.hackathonfc.park.repository.VeiculoRepository;
@@ -40,30 +37,30 @@ public class VagaController {
 		
 	@CrossOrigin
 	@GetMapping("/{id}")
-	public List<VeiculoDto> listarVeiculo(@PathVariable Long id) {
+	public List<VeiculoDTO> listarVeiculo(@PathVariable Long id) {
 		List<Veiculo> veiculos = veiculoRepository.findByVagaId(id);
-		return VeiculoDto.converter(veiculos);
+		return VeiculoDTO.converter(veiculos);
 	}
 	
 	@CrossOrigin
 	@PostMapping
 	@Transactional
-	public ResponseEntity<VeiculoDto> cadastrarVeiculo(@RequestBody @Valid VeiculoForm form, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<VeiculoDTO> cadastrarVeiculo(@RequestBody @Valid VeiculoForm form, UriComponentsBuilder uriBuilder) {
 		Veiculo veiculo = form.converter(vagaRepository);
 		veiculoRepository.save(veiculo);
 		
 		URI uri = uriBuilder.path("/estacionamentos/{id}/vagas/{id}").buildAndExpand(veiculo.getId()).toUri();
-		return ResponseEntity.created(uri).body(new VeiculoDto(veiculo));
+		return ResponseEntity.created(uri).body(new VeiculoDTO(veiculo));
 	}
 	
 	@CrossOrigin
 	@PutMapping("/{id}")
 	@Transactional
-	public ResponseEntity<VeiculoDto> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoForm form) {
+	public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoForm form) {
 		Optional<Veiculo> optional = veiculoRepository.findById(id);
 		if(optional.isPresent()) {
 			Veiculo veiculo = form.atualizar(id, veiculoRepository);
-			return ResponseEntity.ok(new VeiculoDto(veiculo));
+			return ResponseEntity.ok(new VeiculoDTO(veiculo));
 		}
 		
 		return ResponseEntity.notFound().build();

@@ -1,5 +1,7 @@
 package br.com.hackathonfc.park.model;
 
+import br.com.hackathonfc.park.dto.VagaDTO;
+
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -33,8 +35,15 @@ public class Vaga {
 			this.dataSaida = dataSaida;
 			this.livre = livre;
 		}
-		
-		@Override
+
+    public Vaga(VagaDTO vagaDTO) {
+			this.estacionamento = vagaDTO.getEstacionamento();
+			this.dataInicio = vagaDTO.getDataInicio();
+			this.dataSaida = vagaDTO.getDataSaida();
+			this.livre = vagaDTO.isLivre();
+    }
+
+    @Override
 		public int hashCode() {
 			final int prime = 31;
 			int result = 1;

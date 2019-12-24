@@ -1,5 +1,7 @@
 package br.com.hackathonfc.park.model;
 
+import br.com.hackathonfc.park.dto.EstacionamentoDTO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,8 +48,18 @@ public class Estacionamento {
 		this.vagasCarros = vagasCarros;
 		this.precoHora = precoHora;
 	}
-	
-	@Override
+
+    public Estacionamento(EstacionamentoDTO estacionamentoDTO) {
+		this.nome = estacionamentoDTO.getNome();
+		this.cnpj = estacionamentoDTO.getCnpj();
+		this.endereco = estacionamentoDTO.getEndereco();
+		this.telefone = estacionamentoDTO.getTelefone();
+		this.vagasCarros = estacionamentoDTO.getVagasCarros();
+		this.vagasMotos = estacionamentoDTO.getVagasMotos();
+		this.precoHora = estacionamentoDTO.getPrecoHora();
+    }
+
+    @Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
