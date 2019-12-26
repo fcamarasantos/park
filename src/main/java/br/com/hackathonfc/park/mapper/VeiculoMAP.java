@@ -15,4 +15,8 @@ public class VeiculoMAP {
     public List<Veiculo> fromDTO(List<VeiculoDTO> veiculos){
         return veiculos.stream().map(Veiculo::new).collect(Collectors.toList());
     }
+
+    public VeiculoDTO toDTO(Veiculo veiculo) {
+        return new VeiculoDTO(veiculo);
+    }
 }

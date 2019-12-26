@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EstacionamentoDTO {
+
+	private Long id;
 	
 	@NotNull @NotEmpty
 	private String nome;
@@ -36,6 +38,7 @@ public class EstacionamentoDTO {
 	private Double precoHora;
 
 	public EstacionamentoDTO(Estacionamento estacionamento) {
+		this.id = estacionamento.getId();
 		this.nome = estacionamento.getNome();
 		this.cnpj = estacionamento.getCnpj();
 		this.endereco = estacionamento.getEndereco();

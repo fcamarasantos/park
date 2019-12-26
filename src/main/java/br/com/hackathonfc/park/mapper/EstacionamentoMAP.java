@@ -19,4 +19,7 @@ public class EstacionamentoMAP {
         return estacionamentos.stream().map(EstacionamentoDTO::new).collect(Collectors.toList());
     }
 
+    public EstacionamentoDTO toDTO(Estacionamento estacionamento) {
+        return new EstacionamentoDTO(estacionamento);
+    }
 }

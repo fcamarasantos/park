@@ -30,7 +30,7 @@ public class EstacionamentoBO {
         return vagaService.listar(id);
     }
 
-    public ResponseEntity<EstacionamentoDTO> cadastrar(List<EstacionamentoDTO> estacionamentos){
+    public ResponseEntity<List<Estacionamento>> cadastrar(List<EstacionamentoDTO> estacionamentos){
         return estacionamentoService.cadastrar(estacionamentos);
     }
 
@@ -40,5 +40,9 @@ public class EstacionamentoBO {
 
     public ResponseEntity<Estacionamento> deletar(Long id){
         return estacionamentoService.deletar(id);
+    }
+
+    public EstacionamentoDTO detalharEstacionamento(Long id) {
+        return estacionamentoService.detalhar(id);
     }
 }

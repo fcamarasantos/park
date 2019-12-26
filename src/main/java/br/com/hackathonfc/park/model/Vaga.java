@@ -4,12 +4,7 @@ import br.com.hackathonfc.park.dto.VagaDTO;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Vaga {
@@ -17,7 +12,7 @@ public class Vaga {
 		@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		
-		@ManyToOne
+		@ManyToOne(cascade = CascadeType.ALL)
 		private Estacionamento estacionamento;
 		
 		private LocalDateTime dataInicio;
@@ -25,6 +20,9 @@ public class Vaga {
 		private LocalDateTime dataSaida;
 		
 		private boolean livre;
+
+		@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+		private Veiculo veiculo;
 		
 		public Vaga() {
 		}

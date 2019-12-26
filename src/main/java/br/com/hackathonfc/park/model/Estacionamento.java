@@ -5,11 +5,7 @@ import br.com.hackathonfc.park.dto.EstacionamentoDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Estacionamento {
@@ -32,7 +28,7 @@ public class Estacionamento {
 	
 	private Double precoHora;
 	
-	@OneToMany(mappedBy = "estacionamento")
+	@OneToMany(mappedBy = "estacionamento", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Vaga> vagas = new ArrayList<>();
 	
 	public Estacionamento() {

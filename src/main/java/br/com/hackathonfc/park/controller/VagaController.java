@@ -1,11 +1,12 @@
 package br.com.hackathonfc.park.controller;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.com.hackathonfc.park.mapper.VeiculoMAP;
+import br.com.hackathonfc.park.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,52 +31,29 @@ import br.com.hackathonfc.park.repository.VeiculoRepository;
 public class VagaController {
 		
 	@Autowired
-	private VeiculoRepository veiculoRepository;
-	
-	@Autowired
-	private VagaRepository vagaRepository;
-		
+	private VeiculoService veiculoService;
+
 	@CrossOrigin
 	@GetMapping("/{id}")
 	public List<VeiculoDTO> listarVeiculo(@PathVariable Long id) {
-		List<Veiculo> veiculos = veiculoRepository.findByVagaId(id);
-		return VeiculoDTO.converter(veiculos);
+		return veiculoService.listarVeiculo(id);
 	}
 	
 	@CrossOrigin
 	@PostMapping
-	@Transactional
-	public ResponseEntity<VeiculoDTO> cadastrarVeiculo(@RequestBody @Valid VeiculoForm form, UriComponentsBuilder uriBuilder) {
-		Veiculo veiculo = form.converter(vagaRepository);
-		veiculoRepository.save(veiculo);
-		
-		URI uri = uriBuilder.path("/estacionamentos/{id}/vagas/{id}").buildAndExpand(veiculo.getId()).toUri();
-		return ResponseEntity.created(uri).body(new VeiculoDTO(veiculo));
+	public ResponseEntity<List<Veiculo>> cadastrarVeiculo(@RequestBody @Valid List<VeiculoDTO> veiculoDTO) {
+		return veiculoService.cadastrarVeiculo(veiculoDTO);
 	}
 	
 	@CrossOrigin
 	@PutMapping("/{id}")
-	@Transactional
-	public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoForm form) {
-		Optional<Veiculo> optional = veiculoRepository.findById(id);
-		if(optional.isPresent()) {
-			Veiculo veiculo = form.atualizar(id, veiculoRepository);
-			return ResponseEntity.ok(new VeiculoDTO(veiculo));
-		}
-		
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoDTO veiculoDTO) {
+		return veiculoService.atualizarVeiculo(id, veiculoDTO);
 	}
 	
 	@CrossOrigin
 	@DeleteMapping("/{id}")
-	@Transactional
-	public ResponseEntity<?> removerVeiculo(@PathVariable Long id) {		
-		Optional<Veiculo> optional = veiculoRepository.findById(id);
-		if(optional.isPresent()) {
-			veiculoRepository.deleteById(id);
-			return ResponseEntity.ok().build();
-		}
-		
-		return ResponseEntity.notFound().build();
+	public ResponseEntity<VeiculoDTO> removerVeiculo(@PathVariable Long id) {
+		return veiculoService.removerVeiculo(id);
 	}
 }

@@ -15,8 +15,7 @@ public class VagaService {
     @Autowired
     private VagaRepository vagaRepository;
 
-    @Autowired
-    private VagaMAP vagaMAP;
+    private VagaMAP vagaMAP = new VagaMAP();
 
     public List<VagaDTO> listar(Long id){
         List<Vaga> vagas = vagaRepository.findAllFromEstacionamento(id);

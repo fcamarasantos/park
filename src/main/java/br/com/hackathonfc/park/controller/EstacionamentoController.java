@@ -1,14 +1,10 @@
 package br.com.hackathonfc.park.controller;
 
-import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
 import br.com.hackathonfc.park.bo.EstacionamentoBO;
-import br.com.hackathonfc.park.service.EstacionamentoService;
-import br.com.hackathonfc.park.service.VagaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,16 +19,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.hackathonfc.park.dto.VagaDTO;
 import br.com.hackathonfc.park.dto.EstacionamentoDTO;
 import br.com.hackathonfc.park.model.Estacionamento;
-import br.com.hackathonfc.park.model.Vaga;
-import br.com.hackathonfc.park.repository.EstacionamentoRepository;
-import br.com.hackathonfc.park.repository.VagaRepository;
 
 @RestController
 @RequestMapping("/estacionamentos")
@@ -42,8 +33,14 @@ public class EstacionamentoController {
 	private EstacionamentoBO estacionamentoBO;
 
 	@CrossOrigin
+	@GetMapping("/{id}")
+	public EstacionamentoDTO detalhar(@PathVariable Long id){
+		return estacionamentoBO.detalharEstacionamento(id);
+	}
+
+	@CrossOrigin
 	@GetMapping
-	public Page<EstacionamentoDTO> listar(@PageableDefault(sort = "id", direction = Direction.DESC, page = 0, size = 10) Pageable paginacao){
+	public Page<EstacionamentoDTO> listar(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao){
 		return estacionamentoBO.listarEstacionamentos(paginacao);
 	}
 	
@@ -55,7 +52,7 @@ public class EstacionamentoController {
 	
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<EstacionamentoDTO> cadastrar(@RequestBody List<EstacionamentoDTO> estacionamentoDTO) {
+	public ResponseEntity<List<Estacionamento>> cadastrar(@RequestBody List<EstacionamentoDTO> estacionamentoDTO) {
 		return estacionamentoBO.cadastrar(estacionamentoDTO);
 	}
 	
@@ -66,7 +63,7 @@ public class EstacionamentoController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> remover(@PathVariable Long id){
+	public ResponseEntity<Estacionamento> remover(@PathVariable Long id){
 		return estacionamentoBO.deletar(id);
 	}
 	

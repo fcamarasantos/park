@@ -20,21 +20,20 @@ public class EstacionamentoService {
     @Autowired
     private EstacionamentoRepository estacionamentoRepository;
 
-    @Autowired
-    private EstacionamentoMAP estacionamentoMAP;
+    private EstacionamentoMAP estacionamentoMAP = new EstacionamentoMAP();
 
     public Page<EstacionamentoDTO> listar(Pageable paginacao){
 
         List<EstacionamentoDTO> estacionamentos = estacionamentoMAP.toDTO(estacionamentoRepository.findAll(paginacao));
 
-        return new PageImpl<>(estacionamentos);
+        return new PageImpl<EstacionamentoDTO>(estacionamentos);
 
     }
 
-    public ResponseEntity<EstacionamentoDTO> cadastrar(List<EstacionamentoDTO> estacionamentoDTO){
+    public ResponseEntity<List<Estacionamento>> cadastrar(List<EstacionamentoDTO> estacionamentoDTO){
         try {
-            EstacionamentoDTO estacionamento = (EstacionamentoDTO) estacionamentoRepository.saveAll(estacionamentoMAP.fromDTO(estacionamentoDTO));
-            return ResponseEntity.ok().body(estacionamento);
+            List<Estacionamento> estacionamento = estacionamentoRepository.saveAll(estacionamentoMAP.fromDTO(estacionamentoDTO));
+            return ResponseEntity.ok(estacionamento);
         }
         catch (Exception e){
             return ResponseEntity.badRequest().build();
@@ -65,10 +64,19 @@ public class EstacionamentoService {
         Optional<Estacionamento> checkEstacionamento = estacionamentoRepository.findById(id);
 
         if (checkEstacionamento.isPresent()) {
-            estacionamentoRepository.deleteById(id);
-            return ResponseEntity.ok().build();
+            try{
+                estacionamentoRepository.deleteById(id);
+                return ResponseEntity.ok().build();
+            }
+            catch(Exception e){
+                System.out.println(e);
+            }
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    public EstacionamentoDTO detalhar(Long id) {
+        return estacionamentoMAP.toDTO(estacionamentoRepository.findById(id).get());
     }
 }
