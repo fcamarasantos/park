@@ -27,7 +27,7 @@ public class Veiculo {
 	
 	@Enumerated(EnumType.STRING)
 	private TipoVeiculo tipoVeiculo = TipoVeiculo.MOTO;
-	
+
 	@OneToOne
 	private Vaga vaga;
 
