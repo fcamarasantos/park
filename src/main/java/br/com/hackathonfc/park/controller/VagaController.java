@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.com.hackathonfc.park.exception.PlacaFound;
+import br.com.hackathonfc.park.exception.VeiculoNotFound;
 import br.com.hackathonfc.park.mapper.VeiculoMAP;
 import br.com.hackathonfc.park.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,19 +43,19 @@ public class VagaController {
 	
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<List<Veiculo>> cadastrarVeiculo(@RequestBody @Valid List<VeiculoDTO> veiculoDTO) {
+	public ResponseEntity<List<Veiculo>> cadastrarVeiculo(@RequestBody @Valid List<VeiculoDTO> veiculoDTO) throws PlacaFound {
 		return veiculoService.cadastrarVeiculo(veiculoDTO);
 	}
 	
 	@CrossOrigin
 	@PutMapping("/{id}")
-	public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoDTO veiculoDTO) {
+	public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoDTO veiculoDTO) throws VeiculoNotFound {
 		return veiculoService.atualizarVeiculo(id, veiculoDTO);
 	}
 	
 	@CrossOrigin
 	@DeleteMapping("/{id}")
-	public ResponseEntity<VeiculoDTO> removerVeiculo(@PathVariable Long id) {
+	public ResponseEntity<VeiculoDTO> removerVeiculo(@PathVariable Long id) throws VeiculoNotFound {
 		return veiculoService.removerVeiculo(id);
 	}
 }

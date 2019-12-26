@@ -1,6 +1,9 @@
 package br.com.hackathonfc.park.service;
 
 import br.com.hackathonfc.park.dto.EstacionamentoDTO;
+import br.com.hackathonfc.park.exception.CnpjFound;
+import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
+import br.com.hackathonfc.park.exception.NomeFound;
 import br.com.hackathonfc.park.mapper.EstacionamentoMAP;
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,17 +34,35 @@ public class EstacionamentoService {
 
     }
 
-    public ResponseEntity<List<Estacionamento>> cadastrar(List<EstacionamentoDTO> estacionamentoDTO){
+    public ResponseEntity<List<Estacionamento>> cadastrar(List<EstacionamentoDTO> estacionamentosDTO)
+        throws CnpjFound, NomeFound {
+
+        boolean isCnpjPresent;
+        boolean isNomePresent;
+
+        for (EstacionamentoDTO estacionamentoDTO : estacionamentosDTO) {
+            isCnpjPresent = validateCnpj(estacionamentoDTO.getCnpj());
+            isNomePresent = validateNome(estacionamentoDTO.getNome());
+
+            if (isCnpjPresent){
+                throw new CnpjFound();
+            } else if(isNomePresent){
+                throw new NomeFound();
+            }
+        }
+
         try {
-            List<Estacionamento> estacionamento = estacionamentoRepository.saveAll(estacionamentoMAP.fromDTO(estacionamentoDTO));
-            return ResponseEntity.ok(estacionamento);
+            List<Estacionamento> estacionamentos = estacionamentoRepository.saveAll(estacionamentoMAP.fromDTO(estacionamentosDTO));
+            return ResponseEntity.ok(estacionamentos);
         }
         catch (Exception e){
             return ResponseEntity.badRequest().build();
         }
     }
 
-    public ResponseEntity<Estacionamento> atualizar(Long id, EstacionamentoDTO estacionamentoDTO){
+    public ResponseEntity<Estacionamento> atualizar(Long id, EstacionamentoDTO estacionamentoDTO)
+        throws EstacionamentoNotFound {
+
         Optional<Estacionamento> checkEstacionamento = estacionamentoRepository.findById(id);
 
         if (checkEstacionamento.isPresent()){
@@ -55,12 +77,15 @@ public class EstacionamentoService {
             estacionamento.setVagasMotos(estacionamentoDTO.getVagasMotos());
 
             return ResponseEntity.ok(estacionamento);
+        } else {
+            throw new EstacionamentoNotFound();
         }
 
-        return ResponseEntity.notFound().build();
     }
 
-    public ResponseEntity<Estacionamento> deletar(Long id){
+    public ResponseEntity<Estacionamento> deletar(Long id)
+        throws EstacionamentoNotFound {
+
         Optional<Estacionamento> checkEstacionamento = estacionamentoRepository.findById(id);
 
         if (checkEstacionamento.isPresent()) {
@@ -71,6 +96,8 @@ public class EstacionamentoService {
             catch(Exception e){
                 System.out.println(e);
             }
+        } else {
+            throw new EstacionamentoNotFound();
         }
 
         return ResponseEntity.notFound().build();
@@ -78,5 +105,13 @@ public class EstacionamentoService {
 
     public EstacionamentoDTO detalhar(Long id) {
         return estacionamentoMAP.toDTO(estacionamentoRepository.findById(id).get());
+    }
+
+    public boolean validateCnpj(@NotNull int cnpj){
+        return estacionamentoRepository.findByCnpj(cnpj).isPresent();
+    }
+
+    private boolean validateNome(String nome) {
+        return estacionamentoRepository.findByNome(nome).isPresent();
     }
 }

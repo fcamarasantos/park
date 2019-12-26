@@ -5,6 +5,9 @@ import java.util.List;
 import javax.validation.Valid;
 
 import br.com.hackathonfc.park.bo.EstacionamentoBO;
+import br.com.hackathonfc.park.exception.CnpjFound;
+import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
+import br.com.hackathonfc.park.exception.NomeFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -52,18 +55,18 @@ public class EstacionamentoController {
 	
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<List<Estacionamento>> cadastrar(@RequestBody List<EstacionamentoDTO> estacionamentoDTO) {
+	public ResponseEntity<List<Estacionamento>> cadastrar(@RequestBody List<EstacionamentoDTO> estacionamentoDTO) throws NomeFound, CnpjFound {
 		return estacionamentoBO.cadastrar(estacionamentoDTO);
 	}
 	
 	@CrossOrigin
 	@PutMapping("/{id}") 
-	public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid EstacionamentoDTO estacionamentoDTO){
+	public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid EstacionamentoDTO estacionamentoDTO) throws EstacionamentoNotFound {
 		return estacionamentoBO.atualizar(id, estacionamentoDTO);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Estacionamento> remover(@PathVariable Long id){
+	public ResponseEntity<Estacionamento> remover(@PathVariable Long id) throws EstacionamentoNotFound {
 		return estacionamentoBO.deletar(id);
 	}
 	

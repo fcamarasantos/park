@@ -2,6 +2,9 @@ package br.com.hackathonfc.park.bo;
 
 import br.com.hackathonfc.park.dto.EstacionamentoDTO;
 import br.com.hackathonfc.park.dto.VagaDTO;
+import br.com.hackathonfc.park.exception.CnpjFound;
+import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
+import br.com.hackathonfc.park.exception.NomeFound;
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.service.EstacionamentoService;
 import br.com.hackathonfc.park.service.VagaService;
@@ -30,15 +33,15 @@ public class EstacionamentoBO {
         return vagaService.listar(id);
     }
 
-    public ResponseEntity<List<Estacionamento>> cadastrar(List<EstacionamentoDTO> estacionamentos){
+    public ResponseEntity<List<Estacionamento>> cadastrar(List<EstacionamentoDTO> estacionamentos) throws NomeFound, CnpjFound {
         return estacionamentoService.cadastrar(estacionamentos);
     }
 
-    public ResponseEntity<Estacionamento> atualizar(Long id, EstacionamentoDTO estacionamentoDTO){
+    public ResponseEntity<Estacionamento> atualizar(Long id, EstacionamentoDTO estacionamentoDTO) throws EstacionamentoNotFound {
         return estacionamentoService.atualizar(id, estacionamentoDTO);
     }
 
-    public ResponseEntity<Estacionamento> deletar(Long id){
+    public ResponseEntity<Estacionamento> deletar(Long id) throws EstacionamentoNotFound {
         return estacionamentoService.deletar(id);
     }
 
