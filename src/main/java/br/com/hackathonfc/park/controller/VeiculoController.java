@@ -19,25 +19,21 @@ public class VeiculoController {
     @Autowired
     private VeiculoService veiculoService;
 
-    @CrossOrigin
     @GetMapping("/{id}")
     public List<VeiculoDTO> listarVeiculo(@PathVariable Long id) {
         return veiculoService.listarVeiculo(id);
     }
 
-    @CrossOrigin
     @PostMapping
     public ResponseEntity<List<Veiculo>> cadastrarVeiculo(@RequestBody @Valid List<VeiculoDTO> veiculoDTO) throws PlacaFound {
         return veiculoService.cadastrarVeiculo(veiculoDTO);
     }
 
-    @CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoDTO veiculoDTO) throws VeiculoNotFound {
         return veiculoService.atualizarVeiculo(id, veiculoDTO);
     }
 
-    @CrossOrigin
     @DeleteMapping("/{id}")
     public ResponseEntity<VeiculoDTO> removerVeiculo(@PathVariable Long id) throws VeiculoNotFound {
         return veiculoService.removerVeiculo(id);

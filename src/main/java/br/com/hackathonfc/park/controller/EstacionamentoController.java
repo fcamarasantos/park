@@ -36,33 +36,28 @@ public class EstacionamentoController {
 	@Autowired
 	private EstacionamentoBO estacionamentoBO;
 
-	@CrossOrigin
 	@GetMapping("/{id}")
 	public EstacionamentoDTO detalhar(@PathVariable Long id){
 		return estacionamentoBO.detalharEstacionamento(id);
 	}
 
-	@CrossOrigin
 	@GetMapping
 	public Page<EstacionamentoDTO> listar(@PageableDefault(sort = "id", direction = Direction.ASC, page = 0, size = 10) Pageable paginacao){
 		return estacionamentoBO.listarEstacionamentos(paginacao);
 	}
-	
-	@CrossOrigin
+
 	@GetMapping("/{id}/vagas")
 	public List<VagaDTOSemEstacionamento> listarVagas(@PathVariable Long id) {
 		return estacionamentoBO.listarVagas(id);
 	}
-	
-	@CrossOrigin
+
 	@PostMapping
-	public ResponseEntity<List<Estacionamento>> cadastrar(@RequestBody List<EstacionamentoDTO> estacionamentoDTO) throws NomeFound, CnpjFound {
+	public ResponseEntity<EstacionamentoDTO> cadastrar(@RequestBody EstacionamentoDTO estacionamentoDTO) throws NomeFound, CnpjFound {
 		return estacionamentoBO.cadastrar(estacionamentoDTO);
 	}
 	
-	@CrossOrigin
-	@PutMapping("/{id}") 
-	public ResponseEntity<Estacionamento> atualizar(@PathVariable Long id, @RequestBody @Valid EstacionamentoDTO estacionamentoDTO) throws EstacionamentoNotFound {
+	@PutMapping("/{id}")
+	public ResponseEntity<EstacionamentoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid EstacionamentoDTO estacionamentoDTO) throws EstacionamentoNotFound {
 		return estacionamentoBO.atualizar(id, estacionamentoDTO);
 	}
 	
