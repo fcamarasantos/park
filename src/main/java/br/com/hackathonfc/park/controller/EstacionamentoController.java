@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import br.com.hackathonfc.park.bo.EstacionamentoBO;
+import br.com.hackathonfc.park.dto.VagaDTOSemEstacionamento;
 import br.com.hackathonfc.park.exception.CnpjFound;
 import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
 import br.com.hackathonfc.park.exception.NomeFound;
@@ -49,7 +50,7 @@ public class EstacionamentoController {
 	
 	@CrossOrigin
 	@GetMapping("/{id}/vagas")
-	public List<VagaDTO> listarVagas(@PathVariable Long id) {
+	public List<VagaDTOSemEstacionamento> listarVagas(@PathVariable Long id) {
 		return estacionamentoBO.listarVagas(id);
 	}
 	

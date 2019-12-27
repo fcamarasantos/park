@@ -34,39 +34,34 @@ public class EstacionamentoService {
 
     }
 
-    public ResponseEntity<List<Estacionamento>> cadastrar(List<EstacionamentoDTO> estacionamentosDTO)
+    public ResponseEntity<EstacionamentoDTO> cadastrar(EstacionamentoDTO estacionamentoDTO)
         throws CnpjFound, NomeFound {
 
-        boolean isCnpjPresent;
-        boolean isNomePresent;
+        boolean isCnpjPresent = validateCnpj(estacionamentoDTO.getCnpj());
+        boolean isNomePresent = validateNome(estacionamentoDTO.getNome());
 
-        for (EstacionamentoDTO estacionamentoDTO : estacionamentosDTO) {
-            isCnpjPresent = validateCnpj(estacionamentoDTO.getCnpj());
-            isNomePresent = validateNome(estacionamentoDTO.getNome());
-
-            if (isCnpjPresent){
-                throw new CnpjFound();
-            } else if(isNomePresent){
+        if (isCnpjPresent){
+            throw new CnpjFound();
+        } else if(isNomePresent){
                 throw new NomeFound();
-            }
         }
 
         try {
-            List<Estacionamento> estacionamentos = estacionamentoRepository.saveAll(estacionamentoMAP.fromDTO(estacionamentosDTO));
-            return ResponseEntity.ok(estacionamentos);
+            EstacionamentoDTO estacionamento = estacionamentoMAP.toDTO(estacionamentoRepository.save(estacionamentoMAP.fromDTO(estacionamentoDTO)));
+            return ResponseEntity.ok(estacionamento);
         }
         catch (Exception e){
             return ResponseEntity.badRequest().build();
         }
     }
 
-    public ResponseEntity<Estacionamento> atualizar(Long id, EstacionamentoDTO estacionamentoDTO)
+    public ResponseEntity<EstacionamentoDTO> atualizar(Long id, EstacionamentoDTO estacionamentoDTO)
         throws EstacionamentoNotFound {
 
         Optional<Estacionamento> checkEstacionamento = estacionamentoRepository.findById(id);
 
         if (checkEstacionamento.isPresent()){
-            Estacionamento estacionamento = checkEstacionamento.get();
+            Estacionamento estacionamento = estacionamentoRepository.getOne(id);
 
             estacionamento.setNome(estacionamentoDTO.getNome());
             estacionamento.setCnpj(estacionamentoDTO.getCnpj());
@@ -76,8 +71,8 @@ public class EstacionamentoService {
             estacionamento.setVagasCarros(estacionamentoDTO.getVagasCarros());
             estacionamento.setVagasMotos(estacionamentoDTO.getVagasMotos());
 
-            return ResponseEntity.ok(estacionamento);
-        } else {
+            return ResponseEntity.ok(estacionamentoMAP.toDTO(estacionamento));
+        } else{
             throw new EstacionamentoNotFound();
         }
 

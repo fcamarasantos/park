@@ -1,9 +1,7 @@
 package br.com.hackathonfc.park.mapper;
 
 import br.com.hackathonfc.park.dto.EstacionamentoDTO;
-import br.com.hackathonfc.park.dto.VagaDTO;
 import br.com.hackathonfc.park.model.Estacionamento;
-import br.com.hackathonfc.park.model.Vaga;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +15,15 @@ public class EstacionamentoMAP {
         return estacionamentos.stream().map(Estacionamento::new).collect(Collectors.toList());
     }
 
+    public static Estacionamento fromDTO(EstacionamentoDTO estacionamentoDTO){
+        return new Estacionamento(estacionamentoDTO);
+    }
+
     public static List<EstacionamentoDTO> toDTO(Page<Estacionamento> estacionamentos){
+        return estacionamentos.stream().map(EstacionamentoDTO::new).collect(Collectors.toList());
+    }
+
+    public static List<EstacionamentoDTO> toDTO(List<Estacionamento> estacionamentos){
         return estacionamentos.stream().map(EstacionamentoDTO::new).collect(Collectors.toList());
     }
 
