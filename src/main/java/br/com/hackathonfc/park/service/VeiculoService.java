@@ -7,6 +7,7 @@ import br.com.hackathonfc.park.exception.NomeFound;
 import br.com.hackathonfc.park.exception.PlacaFound;
 import br.com.hackathonfc.park.exception.VeiculoNotFound;
 import br.com.hackathonfc.park.mapper.VeiculoMAP;
+import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.repository.VagaRepository;
 import br.com.hackathonfc.park.repository.VeiculoRepository;
@@ -32,28 +33,43 @@ public class VeiculoService {
 
     private VeiculoMAP veiculoMAP = new VeiculoMAP();
 
-    public List<VeiculoDTO> listarVeiculo(@PathVariable Long id) {
+    public List<VeiculoDTO> listarTodosOsVeiculos(Long id){
+        List<Vaga> vagas = vagaRepository.findAllFromEstacionamento(id);
+
+        List<VeiculoDTO> veiculos = null;
+
+        for (Vaga vaga : vagas) {
+            veiculos.addAll(veiculoMAP.toDTO(veiculoRepository.findByVagaId(id)));
+        }
+
+        return veiculos;
+    }
+
+    public List<VeiculoDTO> listarVeiculos(Long id){
+        List<Vaga> vagas = vagaRepository.findAllFromEstacionamento(id);
+
+        List<VeiculoDTO> veiculos = null;
+
+        Veiculo veiculo;
+
+        for (Vaga vaga : vagas) {
+            veiculo = vaga.getVeiculo();
+            veiculos.add(veiculoMAP.toDTO(veiculo));
+        }
+
+        return veiculos;
+    }
+
+    public List<VeiculoDTO> listarVeiculosDeUmaVaga(Long id) {
         return veiculoMAP.toDTO(veiculoRepository.findByVagaId(id));
     }
 
-    public ResponseEntity<List<Veiculo>> cadastrarVeiculo(List<VeiculoDTO> veiculosDTO)
+    public ResponseEntity<VeiculoDTO> cadastrarVeiculo(VeiculoDTO veiculoDTO)
         throws PlacaFound {
-        
-        boolean isPlacaPresent;
-
-        for (VeiculoDTO veiculoDTO : veiculosDTO) {
-            isPlacaPresent = validatePlaca(veiculoDTO.getPlaca());
-
-            if (isPlacaPresent) {
-                throw new PlacaFound();
-            }
-        }
-        
-        List<Veiculo> veiculos = veiculoMAP.fromDTO(veiculosDTO);
 
         try{
-            veiculoRepository.saveAll(veiculos);
-            return ResponseEntity.ok(veiculos);
+            Veiculo veiculo = veiculoRepository.save(veiculoMAP.fromDTO(veiculoDTO));
+            return ResponseEntity.ok(veiculoMAP.toDTO(veiculo));
         }
         catch (Exception e){
             return ResponseEntity.badRequest().build();
@@ -91,9 +107,5 @@ public class VeiculoService {
         } else {
             throw new VeiculoNotFound();
         }
-    }
-
-    private boolean validatePlaca(String placa) {
-        return veiculoRepository.findByPlaca(placa).isPresent();
     }
 }

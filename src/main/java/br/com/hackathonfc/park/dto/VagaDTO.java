@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,9 @@ public class VagaDTO {
 	private Long id;
 
 	@NotNull
-	private Estacionamento estacionamento;
+	private Long estacionamento_id;
+
+	private Long veiculo_id;
 
 	@NotNull
 	private LocalDateTime dataInicio;
@@ -32,12 +35,10 @@ public class VagaDTO {
 	@NotNull
 	private boolean livre;
 
-	private Veiculo veiculo;
 
 	public VagaDTO(Vaga vaga) {
-		this.estacionamento = vaga.getEstacionamento();
-		this.dataInicio = vaga.getDataInicio();
-		this.dataSaida = vaga.getDataSaida();
+		this.estacionamento_id = vaga.getEstacionamento().getId();
 		this.livre = vaga.isLivre();
+		this.veiculo_id = vaga.getVeiculo().getId();
 	}
 }

@@ -21,17 +21,16 @@ public class VeiculoDTO {
 
 	private Long id;
 
-	@NotNull
 	@NotEmpty
 	private String marca;
 
-	@NotNull @NotEmpty
+	@NotEmpty
 	private String modelo;
 
-	@NotNull @NotEmpty
+	@NotEmpty
 	private String cor;
 
-	@NotNull @NotEmpty
+	@NotEmpty
 	private String placa;
 
 	@NotNull

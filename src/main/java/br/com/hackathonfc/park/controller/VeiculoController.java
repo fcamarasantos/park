@@ -7,35 +7,47 @@ import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/estacionamentos/{id}/veiculos")
+@RequestMapping("/estacionamentos")
 public class VeiculoController {
 
     @Autowired
     private VeiculoService veiculoService;
 
-    @GetMapping("/{id}")
-    public List<VeiculoDTO> listarVeiculo(@PathVariable Long id) {
-        return veiculoService.listarVeiculo(id);
+    @GetMapping("/{id}/veiculos")
+    public List<VeiculoDTO> listarVeiculos(@PathVariable Long id){
+        return veiculoService.listarVeiculos(id);
     }
 
-    @PostMapping
-    public ResponseEntity<List<Veiculo>> cadastrarVeiculo(@RequestBody @Valid List<VeiculoDTO> veiculoDTO) throws PlacaFound {
+    @GetMapping("/{id}/veiculos/todos")
+    public List<VeiculoDTO> listarTodosOsVeiculos(@PathVariable Long id){
+        return veiculoService.listarTodosOsVeiculos(id);
+    }
+
+    @GetMapping("/{id}/veiculos/{id2}")
+    public List<VeiculoDTO> listarVeiculosDeUmaVaga(@PathVariable Long id2) {
+        return veiculoService.listarVeiculosDeUmaVaga(id2);
+    }
+
+    @PostMapping("/{id}/veiculos")
+    public ResponseEntity<VeiculoDTO> cadastrarVeiculo(@RequestBody @Valid VeiculoDTO veiculoDTO) throws PlacaFound {
         return veiculoService.cadastrarVeiculo(veiculoDTO);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoDTO veiculoDTO) throws VeiculoNotFound {
-        return veiculoService.atualizarVeiculo(id, veiculoDTO);
+    @PutMapping("/{id}/veiculos/{id2}")
+    @Transactional
+    public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id2, @RequestBody @Valid VeiculoDTO veiculoDTO) throws VeiculoNotFound {
+        return veiculoService.atualizarVeiculo(id2, veiculoDTO);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<VeiculoDTO> removerVeiculo(@PathVariable Long id) throws VeiculoNotFound {
-        return veiculoService.removerVeiculo(id);
+    @DeleteMapping("/{id}/veiculos/{id2}")
+    public ResponseEntity<VeiculoDTO> removerVeiculo(@PathVariable Long id2) throws VeiculoNotFound {
+        return veiculoService.removerVeiculo(id2);
     }
 }

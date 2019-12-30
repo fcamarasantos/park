@@ -8,16 +8,25 @@ import br.com.hackathonfc.park.exception.VagaNotFound;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.service.VagaService;
+import br.com.hackathonfc.park.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VagaBO {
 
     @Autowired
     private VagaService vagaService;
 
+    @Autowired
+    private VeiculoService veiculoService;
+
+    public List<VeiculoDTO> listarVeiculos(Long id) {
+        return veiculoService.listarVeiculos(id);
+    }
     public List<VagaDTOSemEstacionamento> listarVagas(Long id) throws EstacionamentoNotFound {
         return vagaService.listar(id);
     }

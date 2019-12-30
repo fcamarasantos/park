@@ -7,6 +7,7 @@ import br.com.hackathonfc.park.exception.VagaNotFound;
 import br.com.hackathonfc.park.mapper.VagaMAP;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.repository.VagaRepository;
+import br.com.hackathonfc.park.repository.VeiculoRepository;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,9 @@ public class VagaService {
 
     @Autowired
     private VagaRepository vagaRepository;
+
+    @Autowired
+    private VeiculoRepository veiculoRepository;
 
     private VagaMAP vagaMAP;
 
@@ -45,9 +49,7 @@ public class VagaService {
             Vaga vaga = vagaRepository.getOne(id);
 
             vaga.setLivre(vagaDTO.isLivre());
-            vaga.setDataInicio(vagaDTO.getDataInicio());
-            vaga.setDataSaida(vagaDTO.getDataSaida());
-            vaga.setVeiculo(vagaDTO.getVeiculo());
+            vaga.setVeiculo(veiculoRepository.findById(vagaDTO.getVeiculo_id()).get());
 
             return ResponseEntity.ok(vagaMAP.toDTO(vaga));
         }

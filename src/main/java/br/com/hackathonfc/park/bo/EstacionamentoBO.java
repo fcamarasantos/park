@@ -30,7 +30,7 @@ public class EstacionamentoBO {
         return estacionamentoService.listar(paginacao);
     }
 
-    public List<VagaDTOSemEstacionamento> listarVagas(Long id){
+    public List<VagaDTOSemEstacionamento> listarVagas(Long id) throws EstacionamentoNotFound {
         return vagaService.listar(id);
     }
 

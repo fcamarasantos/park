@@ -41,7 +41,7 @@ public class VagaController {
 	@Autowired
 	private VagaBO vagaBO;
 
-	@GetMapping("/{id}/vagas")
+	@GetMapping
 	public List<VagaDTOSemEstacionamento> listarVagas(@PathVariable Long id) throws EstacionamentoNotFound {
 		return vagaBO.listarVagas(id);
 	}
