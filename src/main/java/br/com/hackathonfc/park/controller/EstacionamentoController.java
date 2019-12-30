@@ -47,11 +47,6 @@ public class EstacionamentoController {
 		return estacionamentoBO.listarEstacionamentos(paginacao);
 	}
 
-	@GetMapping("/{id}/vagas")
-	public List<VagaDTOSemEstacionamento> listarVagas(@PathVariable Long id) {
-		return estacionamentoBO.listarVagas(id);
-	}
-
 	@PostMapping
 	public ResponseEntity<EstacionamentoDTO> cadastrar(@RequestBody EstacionamentoDTO estacionamentoDTO) throws NomeFound, CnpjFound {
 		return estacionamentoBO.cadastrar(estacionamentoDTO);

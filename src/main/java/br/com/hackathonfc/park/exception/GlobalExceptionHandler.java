@@ -21,7 +21,8 @@ public class GlobalExceptionHandler {
             EstacionamentoNotFound.class,
             NomeFound.class,
             PlacaFound.class,
-            VeiculoNotFound.class
+            VeiculoNotFound.class,
+            VagaNotFound.class
     })
 
     @Nullable
@@ -50,12 +51,17 @@ public class GlobalExceptionHandler {
             PlacaFound cpffe = (PlacaFound) ex;
             return handlePlacaFound(cpffe, headers, status, request);
 
-        } if (ex instanceof VeiculoNotFound) {
+        }else if (ex instanceof VeiculoNotFound) {
             HttpStatus status = HttpStatus.CONFLICT;
             VeiculoNotFound cnpjfe = (VeiculoNotFound) ex;
             return handleVeiculoNotFound(cnpjfe, headers, status, request);
 
-        } else {
+        } else if (ex instanceof VagaNotFound){
+            HttpStatus status = HttpStatus.CONFLICT;
+            VagaNotFound cnpjfe = (VagaNotFound) ex;
+            return handleVagaNotFound(cnpjfe, headers, status, request);
+        }
+        else {
             if (LOGGER.isWarnEnabled()) {
                 LOGGER.warn("Exceção desconhecida: " + ex.getClass().getName());
             }
@@ -90,6 +96,12 @@ public class GlobalExceptionHandler {
 
     protected final ResponseEntity<ApiError> handleVeiculoNotFound(VeiculoNotFound ex, HttpHeaders headers,
                                                                       HttpStatus status, WebRequest request) {
+        String error = ex.getMessage();
+        return handleExceptionInternal(ex, new ApiError(error), headers, status, request);
+    }
+
+    protected final ResponseEntity<ApiError> handleVagaNotFound(VagaNotFound ex, HttpHeaders headers,
+                                                                   HttpStatus status, WebRequest request) {
         String error = ex.getMessage();
         return handleExceptionInternal(ex, new ApiError(error), headers, status, request);
     }

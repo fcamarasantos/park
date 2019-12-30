@@ -5,9 +5,15 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.com.hackathonfc.park.bo.VagaBO;
+import br.com.hackathonfc.park.dto.VagaDTO;
+import br.com.hackathonfc.park.dto.VagaDTOSemEstacionamento;
+import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
 import br.com.hackathonfc.park.exception.PlacaFound;
+import br.com.hackathonfc.park.exception.VagaNotFound;
 import br.com.hackathonfc.park.exception.VeiculoNotFound;
 import br.com.hackathonfc.park.mapper.VeiculoMAP;
+import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,25 +39,25 @@ import br.com.hackathonfc.park.repository.VeiculoRepository;
 public class VagaController {
 		
 	@Autowired
-	private VeiculoService veiculoService;
+	private VagaBO vagaBO;
 
-	@GetMapping("/{id}")
-	public List<VeiculoDTO> listarVeiculo(@PathVariable Long id) {
-		return veiculoService.listarVeiculo(id);
+	@GetMapping("/{id}/vagas")
+	public List<VagaDTOSemEstacionamento> listarVagas(@PathVariable Long id) throws EstacionamentoNotFound {
+		return vagaBO.listarVagas(id);
 	}
 	
 	@PostMapping
-	public ResponseEntity<List<Veiculo>> cadastrarVeiculo(@RequestBody @Valid List<VeiculoDTO> veiculoDTO) throws PlacaFound {
-		return veiculoService.cadastrarVeiculo(veiculoDTO);
+	public ResponseEntity<VagaDTO> cadastrarVaga(@RequestBody @Valid VagaDTO vagaDTO){
+		return vagaBO.cadastrarVaga(vagaDTO);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<VeiculoDTO> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoDTO veiculoDTO) throws VeiculoNotFound {
-		return veiculoService.atualizarVeiculo(id, veiculoDTO);
+	public ResponseEntity<VagaDTO> atualizarVaga(@PathVariable Long id, @RequestBody @Valid VagaDTO vagaDTO) throws VeiculoNotFound, VagaNotFound {
+		return vagaBO.atualizarVaga(id, vagaDTO);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<VeiculoDTO> removerVeiculo(@PathVariable Long id) throws VeiculoNotFound {
-		return veiculoService.removerVeiculo(id);
+	public ResponseEntity<VagaDTO> removerVaga(@PathVariable Long id) throws VeiculoNotFound, VagaNotFound {
+		return vagaBO.removerVaga(id);
 	}
 }

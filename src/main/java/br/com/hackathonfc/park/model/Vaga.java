@@ -30,13 +30,6 @@ public class Vaga {
 		@OneToOne(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
 		private Veiculo veiculo;
 
-	public Vaga(Estacionamento estacionamento, LocalDateTime dataInicio, LocalDateTime dataSaida, boolean livre) {
-			this.estacionamento = estacionamento;
-			this.dataInicio = dataInicio;
-			this.dataSaida = dataSaida;
-			this.livre = livre;
-		}
-
     	public Vaga(VagaDTO vagaDTO) {
 			this.estacionamento = vagaDTO.getEstacionamento();
 			this.dataInicio = vagaDTO.getDataInicio();

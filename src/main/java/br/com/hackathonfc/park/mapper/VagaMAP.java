@@ -16,8 +16,16 @@ public class VagaMAP {
         return vagas.stream().map(Vaga::new).collect(Collectors.toList());
     }
 
+    public static Vaga fromDTO(VagaDTO vagaDTO){
+        return new Vaga(vagaDTO);
+    }
+
     public static List<VagaDTO> toDTO(List<Vaga> vagas){
         return vagas.stream().map(VagaDTO::new).collect(Collectors.toList());
+    }
+
+    public static VagaDTO toDTO(Vaga vaga){
+        return new VagaDTO(vaga);
     }
 
     public static List<VagaDTOSemEstacionamento> toDTOSemEstacionamento(List<Vaga> vagas){

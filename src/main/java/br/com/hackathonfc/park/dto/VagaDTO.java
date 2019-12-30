@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.model.Vaga;
+import br.com.hackathonfc.park.model.Veiculo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,8 @@ public class VagaDTO {
 
 	@NotNull
 	private boolean livre;
+
+	private Veiculo veiculo;
 
 	public VagaDTO(Vaga vaga) {
 		this.estacionamento = vaga.getEstacionamento();
