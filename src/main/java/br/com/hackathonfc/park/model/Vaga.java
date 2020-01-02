@@ -27,12 +27,15 @@ public class Vaga {
 
 		private boolean livre;
 
+		@Enumerated(EnumType.STRING)
+		private TipoVaga tipoVaga = TipoVaga.CARRO;
+
 		@OneToOne(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
 		private Veiculo veiculo;
 
-    	public Vaga(VagaDTO vagaDTO, EstacionamentoRepository estacionamentoRepository, VeiculoRepository veiculoRepository) {
-			this.estacionamento = estacionamentoRepository.findById(vagaDTO.getEstacionamento_id()).get();
-			this.veiculo = veiculoRepository.findById(vagaDTO.getVeiculo_id()).get();
+    	public Vaga(VagaDTO vagaDTO, Veiculo veiculo, Estacionamento estacionamento) {
+			this.veiculo = veiculo;
 			this.livre = vagaDTO.isLivre();
+			this.estacionamento = estacionamento;
     	}
 }

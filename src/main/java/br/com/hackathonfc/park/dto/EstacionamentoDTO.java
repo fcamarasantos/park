@@ -16,13 +16,13 @@ public class EstacionamentoDTO {
 
 	private Long id;
 	
-	@NotNull @NotEmpty
+	@NotEmpty
 	private String nome;
 	
 	@NotNull 
 	private int cnpj;
 	
-	@NotNull @NotEmpty
+	@NotEmpty
 	private String endereco;
 	
 	@NotNull 

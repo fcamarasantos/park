@@ -2,6 +2,7 @@ package br.com.hackathonfc.park.mapper;
 
 import br.com.hackathonfc.park.dto.VagaDTO;
 import br.com.hackathonfc.park.dto.VagaDTOSemEstacionamento;
+import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
@@ -15,18 +16,8 @@ import java.util.stream.Collectors;
 @Component
 public class VagaMAP {
 
-    @Autowired
-    private static EstacionamentoRepository estacionamentoRepository;
-
-    @Autowired
-    private static VeiculoRepository veiculoRepository;
-
-    public static List<Vaga> fromDTO(List<VagaDTO> vagas){
-        return vagas.stream().map(v -> {return new Vaga(v, estacionamentoRepository, veiculoRepository);} ).collect(Collectors.toList());
-    }
-
-    public static Vaga fromDTO(VagaDTO vagaDTO){
-        return new Vaga(vagaDTO, estacionamentoRepository, veiculoRepository);
+    public static Vaga fromDTO(VagaDTO vagaDTO, Estacionamento estacionamento, Veiculo veiculo){
+        return new Vaga(vagaDTO, veiculo, estacionamento);
     }
 
     public static List<VagaDTO> toDTO(List<Vaga> vagas){
@@ -34,10 +25,24 @@ public class VagaMAP {
     }
 
     public static VagaDTO toDTO(Vaga vaga){
-        return new VagaDTO(vaga);
+        try {
+            return new VagaDTO(vaga);
+        }
+        catch(Exception e){
+            return new VagaDTO(vaga.getId(), vaga.isLivre(), null);
+        }
     }
 
     public static List<VagaDTOSemEstacionamento> toDTOSemEstacionamento(List<Vaga> vagas){
-        return vagas.stream().map(VagaDTOSemEstacionamento::new).collect(Collectors.toList());
+        return vagas.stream().map(v -> {
+            Long id;
+            if (v.getVeiculo() == null){
+                id = null;
+            } else {
+                id = v.getVeiculo().getId();
+            }
+
+            return new VagaDTOSemEstacionamento(v.getId(), v.isLivre(), id);
+        }).collect(Collectors.toList());
     }
 }

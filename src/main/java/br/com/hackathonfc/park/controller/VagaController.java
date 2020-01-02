@@ -35,29 +35,35 @@ import br.com.hackathonfc.park.repository.VagaRepository;
 import br.com.hackathonfc.park.repository.VeiculoRepository;
 
 @RestController
-@RequestMapping("/estacionamentos/{id}/vagas")
+@RequestMapping("/estacionamentos")
 public class VagaController {
 		
 	@Autowired
 	private VagaBO vagaBO;
 
-	@GetMapping
+	@GetMapping("/{id}/vagas/{id2}")
+	public VagaDTO detalharVaga(@PathVariable Long id2) throws VagaNotFound{
+		return vagaBO.detalharVaga(id2);
+	}
+
+	@GetMapping("/{id}/vagas")
 	public List<VagaDTOSemEstacionamento> listarVagas(@PathVariable Long id) throws EstacionamentoNotFound {
 		return vagaBO.listarVagas(id);
 	}
 	
-	@PostMapping
-	public ResponseEntity<VagaDTO> cadastrarVaga(@RequestBody @Valid VagaDTO vagaDTO){
-		return vagaBO.cadastrarVaga(vagaDTO);
+	@PostMapping("/{id}/vagas")
+	public ResponseEntity<VagaDTO> cadastrarVaga(@RequestBody @Valid VagaDTO vagaDTO, @PathVariable Long id){
+		return vagaBO.cadastrarVaga(vagaDTO, id);
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<VagaDTO> atualizarVaga(@PathVariable Long id, @RequestBody @Valid VagaDTO vagaDTO) throws VeiculoNotFound, VagaNotFound {
-		return vagaBO.atualizarVaga(id, vagaDTO);
+	@PutMapping("/{id}/vagas/{id2}")
+	@Transactional
+	public ResponseEntity<VagaDTO> atualizarVaga(@PathVariable Long id2, @RequestBody @Valid VagaDTO vagaDTO) throws VagaNotFound {
+		return vagaBO.atualizarVaga(id2, vagaDTO);
 	}
 	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<VagaDTO> removerVaga(@PathVariable Long id) throws VeiculoNotFound, VagaNotFound {
-		return vagaBO.removerVaga(id);
+	@DeleteMapping("/{id}/vagas/{id2}")
+	public ResponseEntity<VagaDTO> removerVaga(@PathVariable Long id2) throws VeiculoNotFound, VagaNotFound {
+		return vagaBO.removerVaga(id2);
 	}
 }

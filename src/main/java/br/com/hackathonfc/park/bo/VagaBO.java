@@ -31,8 +31,8 @@ public class VagaBO {
         return vagaService.listar(id);
     }
 
-    public ResponseEntity<VagaDTO> cadastrarVaga(VagaDTO vagaDTO) {
-        return vagaService.cadastrar(vagaDTO);
+    public ResponseEntity<VagaDTO> cadastrarVaga(VagaDTO vagaDTO, Long id) {
+        return vagaService.cadastrar(vagaDTO, id);
     }
 
     public ResponseEntity<VagaDTO> atualizarVaga(Long id, VagaDTO vagaDTO) throws VagaNotFound {
@@ -41,5 +41,9 @@ public class VagaBO {
 
     public ResponseEntity<VagaDTO> removerVaga(Long id) throws VagaNotFound {
         return vagaService.remover(id);
+    }
+
+    public VagaDTO detalharVaga(Long id) throws VagaNotFound {
+        return vagaService.detalhar(id);
     }
 }

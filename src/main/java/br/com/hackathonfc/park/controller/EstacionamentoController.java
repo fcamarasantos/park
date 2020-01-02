@@ -48,7 +48,7 @@ public class EstacionamentoController {
 	}
 
 	@PostMapping
-	public ResponseEntity<EstacionamentoDTO> cadastrar(@RequestBody EstacionamentoDTO estacionamentoDTO) throws NomeFound, CnpjFound {
+	public ResponseEntity<EstacionamentoDTO> cadastrar(@RequestBody @Valid EstacionamentoDTO estacionamentoDTO) throws NomeFound, CnpjFound {
 		return estacionamentoBO.cadastrar(estacionamentoDTO);
 	}
 	
