@@ -22,7 +22,8 @@ public class GlobalExceptionHandler {
             NomeFound.class,
             PlacaFound.class,
             VeiculoNotFound.class,
-            VagaNotFound.class
+            VagaNotFound.class,
+            UnmatchedType.class
     })
 
     @Nullable
@@ -61,6 +62,11 @@ public class GlobalExceptionHandler {
             VagaNotFound cnpjfe = (VagaNotFound) ex;
             return handleVagaNotFound(cnpjfe, headers, status, request);
         }
+        else if (ex instanceof UnmatchedType){
+            HttpStatus status = HttpStatus.CONFLICT;
+            UnmatchedType cnpjfe = (UnmatchedType) ex;
+            return handleUnmatchedType(cnpjfe, headers, status, request);
+        }
         else {
             if (LOGGER.isWarnEnabled()) {
                 LOGGER.warn("Exceção desconhecida: " + ex.getClass().getName());
@@ -72,6 +78,12 @@ public class GlobalExceptionHandler {
 
     protected final ResponseEntity<ApiError> handleCnpjFound(CnpjFound ex, HttpHeaders headers,
                                                                              HttpStatus status, WebRequest request) {
+        String error = ex.getMessage();
+        return handleExceptionInternal(ex, new ApiError(error), headers, status, request);
+    }
+
+    protected final ResponseEntity<ApiError> handleUnmatchedType(UnmatchedType ex, HttpHeaders headers,
+                                                             HttpStatus status, WebRequest request) {
         String error = ex.getMessage();
         return handleExceptionInternal(ex, new ApiError(error), headers, status, request);
     }

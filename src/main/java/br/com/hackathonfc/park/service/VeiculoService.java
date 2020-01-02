@@ -2,10 +2,7 @@ package br.com.hackathonfc.park.service;
 
 import br.com.hackathonfc.park.dto.EstacionamentoDTO;
 import br.com.hackathonfc.park.dto.VeiculoDTO;
-import br.com.hackathonfc.park.exception.CnpjFound;
-import br.com.hackathonfc.park.exception.NomeFound;
-import br.com.hackathonfc.park.exception.PlacaFound;
-import br.com.hackathonfc.park.exception.VeiculoNotFound;
+import br.com.hackathonfc.park.exception.*;
 import br.com.hackathonfc.park.mapper.VeiculoMAP;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
@@ -65,10 +62,22 @@ public class VeiculoService {
     }
 
     public ResponseEntity<VeiculoDTO> cadastrarVeiculo(VeiculoDTO veiculoDTO)
-        throws PlacaFound {
+        throws PlacaFound, UnmatchedType {
+
+        Vaga vaga = new Vaga();
+        Optional<Vaga> checkVaga = vagaRepository.findById(veiculoDTO.getVagaId());
+
+        if (checkVaga.isPresent()) {
+            if (veiculoDTO.getTipoVeiculo().toString().equals(checkVaga.get().getTipoVaga().toString())) {
+                vaga = checkVaga.get();
+            }
+            else {
+                throw new UnmatchedType();
+            }
+        }
 
         try{
-            Veiculo veiculo = veiculoRepository.save(veiculoMAP.fromDTO(veiculoDTO));
+            Veiculo veiculo = veiculoRepository.save(veiculoMAP.fromDTO(veiculoDTO, vaga));
             return ResponseEntity.ok(veiculoMAP.toDTO(veiculo));
         }
         catch (Exception e){

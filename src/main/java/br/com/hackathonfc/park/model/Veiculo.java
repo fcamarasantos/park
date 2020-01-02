@@ -35,12 +35,13 @@ public class Veiculo {
 	@OneToOne
 	private Vaga vaga;
 
-	public Veiculo(VeiculoDTO veiculoDTO, VagaRepository vagaRepository){
+	public Veiculo(VeiculoDTO veiculoDTO, Vaga vaga){
+		this.id = veiculoDTO.getId();
 		this.marca = veiculoDTO.getMarca();
 		this.modelo = veiculoDTO.getModelo();
 		this.cor = veiculoDTO.getCor();
 		this.placa = veiculoDTO.getPlaca();
 		this.tipoVeiculo = veiculoDTO.getTipoVeiculo();
-		this.vaga = vagaRepository.findById(veiculoDTO.getVagaId()).get();
+		this.vaga = vaga;
 	}
 }

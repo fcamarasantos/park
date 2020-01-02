@@ -2,6 +2,7 @@ package br.com.hackathonfc.park.controller;
 
 import br.com.hackathonfc.park.dto.VeiculoDTO;
 import br.com.hackathonfc.park.exception.PlacaFound;
+import br.com.hackathonfc.park.exception.UnmatchedType;
 import br.com.hackathonfc.park.exception.VeiculoNotFound;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.service.VeiculoService;
@@ -36,7 +37,7 @@ public class VeiculoController {
     }
 
     @PostMapping("/{id}/veiculos")
-    public ResponseEntity<VeiculoDTO> cadastrarVeiculo(@RequestBody @Valid VeiculoDTO veiculoDTO) throws PlacaFound {
+    public ResponseEntity<VeiculoDTO> cadastrarVeiculo(@RequestBody @Valid VeiculoDTO veiculoDTO) throws PlacaFound, UnmatchedType {
         return veiculoService.cadastrarVeiculo(veiculoDTO);
     }
 

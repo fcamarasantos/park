@@ -19,6 +19,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class VeiculoDTO {
 
+	@Id
 	private Long id;
 
 	@NotEmpty
@@ -40,6 +41,7 @@ public class VeiculoDTO {
 	private Long vagaId;
 
 	public VeiculoDTO(Veiculo veiculo) {
+		this.id = veiculo.getId();
 		this.marca = veiculo.getMarca();
 		this.modelo = veiculo.getModelo();
 		this.cor = veiculo.getCor();

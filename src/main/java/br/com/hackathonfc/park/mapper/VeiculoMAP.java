@@ -1,6 +1,7 @@
 package br.com.hackathonfc.park.mapper;
 
 import br.com.hackathonfc.park.dto.VeiculoDTO;
+import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,10 @@ public class VeiculoMAP {
     }
 
     public static List<Veiculo> fromDTO(List<VeiculoDTO> veiculos){
-        return veiculos.stream().map(v -> {return new Veiculo(v, vagaRepository);} ).collect(Collectors.toList());
+        return veiculos.stream().map(v -> {return new Veiculo(v, vagaRepository.findById(v.getVagaId()).get());} ).collect(Collectors.toList());
     }
 
-    public static Veiculo fromDTO(VeiculoDTO veiculoDTO){
-        return new Veiculo(veiculoDTO, vagaRepository);
+    public static Veiculo fromDTO(VeiculoDTO veiculoDTO, Vaga vaga){
+        return new Veiculo(veiculoDTO, vaga);
     }
 }
