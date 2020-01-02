@@ -29,7 +29,7 @@ public class VagaMAP {
             return new VagaDTO(vaga);
         }
         catch(Exception e){
-            return new VagaDTO(vaga.getId(), vaga.isLivre(), null);
+            return new VagaDTO(vaga.getId(), vaga.isLivre(), null, vaga.getTipoVaga());
         }
     }
 
@@ -42,7 +42,7 @@ public class VagaMAP {
                 id = v.getVeiculo().getId();
             }
 
-            return new VagaDTOSemEstacionamento(v.getId(), v.isLivre(), id);
+            return new VagaDTOSemEstacionamento(v.getId(), v.isLivre(), id, v.getTipoVaga());
         }).collect(Collectors.toList());
     }
 }

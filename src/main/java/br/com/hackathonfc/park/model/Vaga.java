@@ -37,5 +37,6 @@ public class Vaga {
 			this.veiculo = veiculo;
 			this.livre = vagaDTO.isLivre();
 			this.estacionamento = estacionamento;
+			this.tipoVaga = vagaDTO.getTipoVaga();
     	}
 }
