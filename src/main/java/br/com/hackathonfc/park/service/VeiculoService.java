@@ -4,6 +4,8 @@ import br.com.hackathonfc.park.dto.EstacionamentoDTO;
 import br.com.hackathonfc.park.dto.VeiculoDTO;
 import br.com.hackathonfc.park.exception.*;
 import br.com.hackathonfc.park.mapper.VeiculoMAP;
+import br.com.hackathonfc.park.model.TipoVaga;
+import br.com.hackathonfc.park.model.TipoVeiculo;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.repository.VagaRepository;
@@ -65,16 +67,23 @@ public class VeiculoService {
         throws PlacaFound, UnmatchedType {
 
         Vaga vaga = new Vaga();
+
         Optional<Vaga> checkVaga = vagaRepository.findById(veiculoDTO.getVagaId());
 
+        boolean isPlacaFound = ValidatePlaca(veiculoDTO.getPlaca());
+
         if (checkVaga.isPresent()) {
-            if (veiculoDTO.getTipoVeiculo().toString().equals(checkVaga.get().getTipoVaga().toString())) {
+            boolean isTypeValid = ValidadeType(veiculoDTO.getTipoVeiculo(), checkVaga.get().getTipoVaga());
+
+            if (isTypeValid) {
                 vaga = checkVaga.get();
             }
             else {
                 throw new UnmatchedType();
             }
         }
+
+        if (isPlacaFound == true) throw new PlacaFound();
 
         try{
             Veiculo veiculo = veiculoRepository.save(veiculoMAP.fromDTO(veiculoDTO, vaga));
@@ -116,5 +125,13 @@ public class VeiculoService {
         } else {
             throw new VeiculoNotFound();
         }
+    }
+
+    private boolean ValidatePlaca(String placa){
+        return veiculoRepository.findByPlaca(placa).isPresent();
+    }
+
+    private boolean ValidadeType(TipoVeiculo tipoVeiculo, TipoVaga tipoVaga) {
+        return tipoVeiculo.toString().equals(tipoVaga.toString());
     }
 }

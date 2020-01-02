@@ -48,6 +48,7 @@ public class VeiculoController {
     }
 
     @DeleteMapping("/{id}/veiculos/{id2}")
+    @Transactional
     public ResponseEntity<VeiculoDTO> removerVeiculo(@PathVariable Long id2) throws VeiculoNotFound {
         return veiculoService.removerVeiculo(id2);
     }

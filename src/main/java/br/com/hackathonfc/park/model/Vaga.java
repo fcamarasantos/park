@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -30,11 +32,11 @@ public class Vaga {
 		@Enumerated(EnumType.STRING)
 		private TipoVaga tipoVaga = TipoVaga.CARRO;
 
-		@OneToOne(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
-		private Veiculo veiculo;
+		@OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
+		private List<Veiculo> veiculo = Arrays.asList();
 
     	public Vaga(VagaDTO vagaDTO, Veiculo veiculo, Estacionamento estacionamento) {
-			this.veiculo = veiculo;
+			this.veiculo.add(veiculo);
 			this.livre = vagaDTO.isLivre();
 			this.estacionamento = estacionamento;
 			this.tipoVaga = vagaDTO.getTipoVaga();

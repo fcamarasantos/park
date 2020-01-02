@@ -28,7 +28,7 @@ public class VagaDTOSemEstacionamento {
     public VagaDTOSemEstacionamento(Vaga vaga){
         this.id = vaga.getId();
         this.livre = vaga.isLivre();
-        this.veiculo_id = vaga.getVeiculo().getId();
+        this.veiculo_id = vaga.getVeiculo().get(vaga.getVeiculo().size() - 1).getId();
         this.tipoVaga = vaga.getTipoVaga();
     }
 }

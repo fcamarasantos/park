@@ -102,7 +102,7 @@ public class EstacionamentoService {
         return estacionamentoMAP.toDTO(estacionamentoRepository.findById(id).get());
     }
 
-    public boolean validateCnpj(@NotNull int cnpj){
+    public boolean validateCnpj(int cnpj){
         return estacionamentoRepository.findByCnpj(cnpj).isPresent();
     }
 

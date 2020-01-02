@@ -16,17 +16,24 @@ import java.util.stream.Collectors;
 @Component
 public class VagaMAP {
 
+    @Autowired
+    private static VeiculoRepository veiculoRepository;
+
     public static Vaga fromDTO(VagaDTO vagaDTO, Estacionamento estacionamento, Veiculo veiculo){
         return new Vaga(vagaDTO, veiculo, estacionamento);
     }
 
     public static List<VagaDTO> toDTO(List<Vaga> vagas){
-        return vagas.stream().map(VagaDTO::new).collect(Collectors.toList());
+        return vagas.stream().map(v -> {
+            Long id = retornarVeiculoId(v.getId());
+            return new VagaDTO(v, id);
+        }).collect(Collectors.toList());
     }
 
     public static VagaDTO toDTO(Vaga vaga){
         try {
-            return new VagaDTO(vaga);
+            Long id = retornarVeiculoId(vaga.getId());
+            return new VagaDTO(vaga, id);
         }
         catch(Exception e){
             return new VagaDTO(vaga.getId(), vaga.isLivre(), null, vaga.getTipoVaga());
@@ -39,10 +46,15 @@ public class VagaMAP {
             if (v.getVeiculo() == null){
                 id = null;
             } else {
-                id = v.getVeiculo().getId();
+                id = retornarVeiculoId(v.getId());
             }
 
             return new VagaDTOSemEstacionamento(v.getId(), v.isLivre(), id, v.getTipoVaga());
         }).collect(Collectors.toList());
+    }
+
+    private static Long retornarVeiculoId(Long id){
+        List<Veiculo> veiculos = veiculoRepository.findByVagaId(id);
+        return veiculos.get(veiculos.size()-1).getId();
     }
 }
