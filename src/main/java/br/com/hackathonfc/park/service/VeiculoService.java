@@ -52,7 +52,7 @@ public class VeiculoService {
         Veiculo veiculo;
 
         for (Vaga vaga : vagas) {
-            veiculo = vaga.getVeiculo();
+            veiculo = vaga.getVeiculo().get(vaga.getVeiculo().size()-1);
             veiculos.add(veiculoMAP.toDTO(veiculo));
         }
 
