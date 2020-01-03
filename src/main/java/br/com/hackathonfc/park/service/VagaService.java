@@ -84,11 +84,8 @@ public class VagaService {
                 }
             }
 
-            List<Veiculo> veiculos = vaga.getVeiculo();
-            veiculos.add(veiculo);
-
             vaga.setLivre(vagaDTO.isLivre());
-            vaga.setVeiculo(veiculos);
+            vaga.setVeiculo(veiculo);
 
             return ResponseEntity.ok(vagaMAP.toDTO(vaga));
         }

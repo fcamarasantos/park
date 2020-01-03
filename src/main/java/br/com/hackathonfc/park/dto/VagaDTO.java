@@ -24,10 +24,10 @@ public class VagaDTO {
 	@NotNull
 	private TipoVaga tipoVaga;
 
-	public VagaDTO(Vaga vaga, Long veiculo_id) {
+	public VagaDTO(Vaga vaga) {
 		this.id = vaga.getId();
 		this.livre = vaga.isLivre();
-		this.veiculo_id = veiculo_id;
+		this.veiculo_id = vaga.getVeiculo().getId();
 		this.tipoVaga = vaga.getTipoVaga();
 	}
 }

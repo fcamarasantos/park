@@ -32,11 +32,11 @@ public class Vaga {
 		@Enumerated(EnumType.STRING)
 		private TipoVaga tipoVaga = TipoVaga.CARRO;
 
-		@OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
-		private List<Veiculo> veiculo = Arrays.asList();
+		@OneToOne(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
+		private Veiculo veiculo;
 
     	public Vaga(VagaDTO vagaDTO, Veiculo veiculo, Estacionamento estacionamento) {
-			this.veiculo.add(veiculo);
+			this.veiculo = veiculo;
 			this.livre = vagaDTO.isLivre();
 			this.estacionamento = estacionamento;
 			this.tipoVaga = vagaDTO.getTipoVaga();
