@@ -30,10 +30,6 @@ public class EstacionamentoBO {
         return estacionamentoService.listar(paginacao);
     }
 
-    public List<VagaDTOSemEstacionamento> listarVagas(Long id) throws EstacionamentoNotFound {
-        return vagaService.listar(id);
-    }
-
     public ResponseEntity<EstacionamentoDTO> cadastrar(EstacionamentoDTO estacionamento) throws NomeFound, CnpjFound {
         return estacionamentoService.cadastrar(estacionamento);
     }

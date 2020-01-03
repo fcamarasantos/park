@@ -6,23 +6,32 @@ import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
 import br.com.hackathonfc.park.exception.NomeFound;
 import br.com.hackathonfc.park.mapper.EstacionamentoMAP;
 import br.com.hackathonfc.park.model.Estacionamento;
+import br.com.hackathonfc.park.model.TipoVaga;
+import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
+import br.com.hackathonfc.park.repository.VagaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
+
+import static br.com.hackathonfc.park.model.TipoVaga.*;
+import static br.com.hackathonfc.park.model.TipoVaga.MOTO;
 
 @Service
 public class EstacionamentoService {
 
     @Autowired
     private EstacionamentoRepository estacionamentoRepository;
+
+    @Autowired
+    private VagaRepository vagaRepository;
 
     private EstacionamentoMAP estacionamentoMAP = new EstacionamentoMAP();
 
@@ -48,6 +57,7 @@ public class EstacionamentoService {
 
         try {
             EstacionamentoDTO estacionamento = estacionamentoMAP.toDTO(estacionamentoRepository.save(estacionamentoMAP.fromDTO(estacionamentoDTO)));
+            //cadastrarVagas(estacionamentoDTO.getVagasMotos(), estacionamentoDTO.getVagasCarros(), estacionamentoDTO);
             return ResponseEntity.ok(estacionamento);
         }
         catch (Exception e){
@@ -108,5 +118,20 @@ public class EstacionamentoService {
 
     private boolean validateNome(String nome) {
         return estacionamentoRepository.findByNome(nome).isPresent();
+    }
+
+    private void cadastrarVagas(int vagasMoto, int vagasCarro, EstacionamentoDTO estacionamentoDTO){
+        TipoVaga tipoMoto = MOTO;
+        TipoVaga tipoCarro = CARRO;
+        Vaga vagaMoto = new Vaga(estacionamentoMAP.fromDTO(estacionamentoDTO), tipoMoto);
+        Vaga vagaCarro = new Vaga(estacionamentoMAP.fromDTO(estacionamentoDTO), tipoCarro);
+
+        for (int i = 0; i < vagasMoto; i++) {
+            vagaRepository.save(vagaMoto);
+        }
+
+        for (int i = 0; i < vagasCarro; i++) {
+            vagaRepository.save(vagaCarro);
+        }
     }
 }

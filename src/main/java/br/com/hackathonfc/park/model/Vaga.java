@@ -27,7 +27,7 @@ public class Vaga {
 		@ManyToOne
 		private Estacionamento estacionamento;
 
-		private boolean livre;
+		private boolean livre = true;
 
 		@Enumerated(EnumType.STRING)
 		private TipoVaga tipoVaga = TipoVaga.CARRO;
@@ -41,4 +41,11 @@ public class Vaga {
 			this.estacionamento = estacionamento;
 			this.tipoVaga = vagaDTO.getTipoVaga();
     	}
+
+    	public Vaga(Estacionamento estacionamento, TipoVaga tipoVaga){
+    		this.veiculo = null;
+    		this.livre = true;
+    		this.estacionamento = estacionamento;
+    		this.tipoVaga = tipoVaga;
+		}
 }

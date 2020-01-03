@@ -76,7 +76,7 @@ public class VeiculoService {
             boolean isTypeValid = ValidadeType(veiculoDTO.getTipoVeiculo(), checkVaga.get().getTipoVaga());
 
             if (isTypeValid) {
-                vaga = checkVaga.get();
+                vaga = vagaRepository.getOne(veiculoDTO.getVagaId());
             }
             else {
                 throw new UnmatchedType();
@@ -86,6 +86,7 @@ public class VeiculoService {
         if (isPlacaFound == true) throw new PlacaFound();
 
         try{
+            vaga.setLivre(false);
             Veiculo veiculo = veiculoRepository.save(veiculoMAP.fromDTO(veiculoDTO, vaga));
             return ResponseEntity.ok(veiculoMAP.toDTO(veiculo));
         }
@@ -120,6 +121,8 @@ public class VeiculoService {
         Optional<Veiculo> optional = veiculoRepository.findById(id);
 
         if(optional.isPresent()) {
+            Vaga vaga = vagaRepository.findById(optional.get().getVaga().getId()).get();
+            vaga.setLivre(true);
             veiculoRepository.deleteById(id);
             return ResponseEntity.ok().build();
         } else {
