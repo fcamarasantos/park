@@ -57,8 +57,7 @@ public class VagaController {
 	}
 	
 	@PutMapping("/{id}/vagas/{id2}")
-	@Transactional
-	public ResponseEntity<VagaDTO> atualizarVaga(@PathVariable Long id2, @RequestBody @Valid VagaDTO vagaDTO) throws VagaNotFound {
+	public ResponseEntity<VagaDTO> atualizarVaga(@PathVariable Long id2, @RequestBody @Valid VagaDTO vagaDTO) throws VagaNotFound, VeiculoNotFound {
 		return vagaBO.atualizarVaga(id2, vagaDTO);
 	}
 	

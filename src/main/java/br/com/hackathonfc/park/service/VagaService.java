@@ -4,39 +4,37 @@ import br.com.hackathonfc.park.dto.VagaDTO;
 import br.com.hackathonfc.park.dto.VagaDTOSemEstacionamento;
 import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
 import br.com.hackathonfc.park.exception.VagaNotFound;
+import br.com.hackathonfc.park.exception.VeiculoNotFound;
 import br.com.hackathonfc.park.mapper.VagaMAP;
 import br.com.hackathonfc.park.model.Estacionamento;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
-import br.com.hackathonfc.park.repository.EstacionamentoRepository;
 import br.com.hackathonfc.park.repository.VagaRepository;
-import br.com.hackathonfc.park.repository.VeiculoRepository;
-import org.apache.coyote.Response;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import javax.swing.text.html.Option;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class VagaService {
 
     @Autowired
     private VagaRepository vagaRepository;
 
     @Autowired
-    private VeiculoRepository veiculoRepository;
+    private VeiculoService veiculoService;
 
     @Autowired
-    private EstacionamentoRepository estacionamentoRepository;
+    private EstacionamentoService estacionamentoService;
 
     private VagaMAP vagaMAP;
 
     public List<VagaDTOSemEstacionamento> listar(Long id) throws EstacionamentoNotFound {
-        Optional<Estacionamento> checkEstacionamento = estacionamentoRepository.findById(id);
+        Optional<Estacionamento> checkEstacionamento = estacionamentoService.retornarEstacionamento(id);
         List<Vaga> vagas;
 
         if(checkEstacionamento.isPresent()){
@@ -50,14 +48,14 @@ public class VagaService {
 
     public ResponseEntity<VagaDTO> cadastrar(VagaDTO vagaDTO, Long id) {
         try {
-            Estacionamento estacionamento = estacionamentoRepository.findById(id).get();
-            Optional<Veiculo> checkVeiculo = veiculoRepository.findById(vagaDTO.getVeiculo_id());
+            Estacionamento estacionamento = estacionamentoService.retornarEstacionamento(id).get();
+            Optional<Veiculo> checkVeiculo = veiculoService.retornarVeiculo(vagaDTO.getVeiculo_id());
             Veiculo veiculo;
 
             if (!checkVeiculo.isPresent()) {
                 veiculo = null;
             } else{
-                veiculo = veiculoRepository.getOne(vagaDTO.getVeiculo_id());
+                veiculo = checkVeiculo.get();
             }
 
             Vaga vaga = vagaRepository.save(vagaMAP.fromDTO(vagaDTO, estacionamento, veiculo));
@@ -68,7 +66,7 @@ public class VagaService {
         }
     }
 
-    public ResponseEntity<VagaDTO> atualizar(Long id, VagaDTO vagaDTO) throws VagaNotFound{
+    public ResponseEntity<VagaDTO> atualizar(Long id, VagaDTO vagaDTO) throws VagaNotFound, VeiculoNotFound {
         Optional<Vaga> checkVaga = vagaRepository.findById(id);
         Veiculo veiculo = new Veiculo();
 
@@ -77,15 +75,17 @@ public class VagaService {
 
             if (vagaDTO.getVeiculo_id() != null) {
 
-                Optional<Veiculo> checkVeiculo = veiculoRepository.findById(vagaDTO.getVeiculo_id());
+                Optional<Veiculo> checkVeiculo = veiculoService.retornarVeiculo(vagaDTO.getVeiculo_id());
 
                 if (checkVeiculo.isPresent()){
-                    veiculo = veiculoRepository.getOne(vagaDTO.getVeiculo_id());
+                    veiculo = checkVeiculo.get();
                 }
             }
 
             vaga.setLivre(vagaDTO.isLivre());
             vaga.setVeiculo(veiculo);
+
+            vagaRepository.save(vaga);
 
             return ResponseEntity.ok(vagaMAP.toDTO(vaga));
         }
@@ -118,5 +118,43 @@ public class VagaService {
         }
 
         return vagaMAP.toDTO(vaga);
+    }
+
+    public List<Vaga> listarDeUmEstacionamento(Long id) throws EstacionamentoNotFound{
+        Optional<Estacionamento> estacionamento = estacionamentoService.retornarEstacionamento(id);
+
+        if (estacionamento.isPresent()){
+            return vagaRepository.findAllFromEstacionamento(id);
+        }
+        else {
+            throw new EstacionamentoNotFound();
+        }
+    }
+
+    public Optional<Vaga> retornarVaga(Long id) throws VagaNotFound{
+        Optional<Vaga> vaga = vagaRepository.findById(id);
+
+        if (vaga.isPresent()){
+            return vagaRepository.findById(id);
+        }
+        else {
+            throw new VagaNotFound();
+        }
+    }
+
+    public Vaga cadastrarVaga(Vaga vaga, Long id){
+        try {
+            Optional<Estacionamento> estacionamento = estacionamentoService.retornarEstacionamento(id);
+
+            if (estacionamento.isPresent()) {
+                return vagaRepository.save(vaga);
+            } else {
+                throw new EstacionamentoNotFound();
+            }
+        }
+        catch (Exception e) {
+            log.error(e.toString());
+            return null;
+        }
     }
 }

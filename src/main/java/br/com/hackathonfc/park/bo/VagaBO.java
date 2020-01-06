@@ -5,6 +5,7 @@ import br.com.hackathonfc.park.dto.VagaDTOSemEstacionamento;
 import br.com.hackathonfc.park.dto.VeiculoDTO;
 import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
 import br.com.hackathonfc.park.exception.VagaNotFound;
+import br.com.hackathonfc.park.exception.VeiculoNotFound;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.service.VagaService;
@@ -24,8 +25,8 @@ public class VagaBO {
     @Autowired
     private VeiculoService veiculoService;
 
-    public List<VeiculoDTO> listarVeiculos(Long id) {
-        return veiculoService.listarVeiculos(id);
+    public List<VeiculoDTO> listarVeiculos(Long id) throws EstacionamentoNotFound {
+        return veiculoService.listarVeiculosDoEstacionamento(id);
     }
     public List<VagaDTOSemEstacionamento> listarVagas(Long id) throws EstacionamentoNotFound {
         return vagaService.listar(id);
@@ -35,7 +36,7 @@ public class VagaBO {
         return vagaService.cadastrar(vagaDTO, id);
     }
 
-    public ResponseEntity<VagaDTO> atualizarVaga(Long id, VagaDTO vagaDTO) throws VagaNotFound {
+    public ResponseEntity<VagaDTO> atualizarVaga(Long id, VagaDTO vagaDTO) throws VagaNotFound, VeiculoNotFound {
         return vagaService.atualizar(id, vagaDTO);
     }
 

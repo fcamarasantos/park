@@ -34,7 +34,7 @@ public class Estacionamento {
 	
 	private Double precoHora;
 	
-	@OneToMany(mappedBy = "estacionamento", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "estacionamento", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Vaga> vagas = new ArrayList<>();
 
     public Estacionamento(EstacionamentoDTO estacionamentoDTO) {

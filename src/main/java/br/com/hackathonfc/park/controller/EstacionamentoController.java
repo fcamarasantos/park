@@ -53,7 +53,6 @@ public class EstacionamentoController {
 	}
 	
 	@PutMapping("/{id}")
-	@Transactional
 	public ResponseEntity<EstacionamentoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid EstacionamentoDTO estacionamentoDTO) throws EstacionamentoNotFound {
 		return estacionamentoBO.atualizar(id, estacionamentoDTO);
 	}
