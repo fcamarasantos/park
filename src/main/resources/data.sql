@@ -22,3 +22,4 @@ INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES
 INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES(5, 'Fiat', 'Punto', 'Branco', 'FIAT-6666', 'CARRO', 7)
 INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES(6, 'Harley Davidson', 'Fat Boy 2014', 'Vermelho', 'HARL-1882', 'MOTO', 8)
 
+INSERT INTO USER(id, username, password) VALUES(1, 'admin', '$2a$10$ytMUsX0w0LYTgx5pmonSyugG4ETZJV8n.c.rbBPDbDSAn2.LmMX6S')

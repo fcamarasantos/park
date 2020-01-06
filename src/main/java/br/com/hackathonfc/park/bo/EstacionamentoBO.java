@@ -42,7 +42,7 @@ public class EstacionamentoBO {
         return estacionamentoService.deletar(id);
     }
 
-    public EstacionamentoDTO detalharEstacionamento(Long id) {
+    public EstacionamentoDTO detalharEstacionamento(Long id) throws EstacionamentoNotFound {
         return estacionamentoService.detalhar(id);
     }
 }

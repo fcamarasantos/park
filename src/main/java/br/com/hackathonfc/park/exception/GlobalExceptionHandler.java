@@ -23,7 +23,9 @@ public class GlobalExceptionHandler {
             PlacaFound.class,
             VeiculoNotFound.class,
             VagaNotFound.class,
-            UnmatchedType.class
+            UnmatchedType.class,
+            PasswordNotValid.class,
+            UsernameNotValid.class
     })
 
     @Nullable
@@ -67,6 +69,16 @@ public class GlobalExceptionHandler {
             UnmatchedType cnpjfe = (UnmatchedType) ex;
             return handleUnmatchedType(cnpjfe, headers, status, request);
         }
+        else if (ex instanceof PasswordNotValid){
+            HttpStatus status = HttpStatus.CONFLICT;
+            PasswordNotValid cnpjfe = (PasswordNotValid) ex;
+            return handlePasswordNotValid(cnpjfe, headers, status, request);
+        }
+        else if (ex instanceof UsernameNotValid){
+            HttpStatus status = HttpStatus.CONFLICT;
+            UsernameNotValid cnpjfe = (UsernameNotValid) ex;
+            return handleUsernameNotValid(cnpjfe, headers, status, request);
+        }
         else {
             if (LOGGER.isWarnEnabled()) {
                 LOGGER.warn("Exceção desconhecida: " + ex.getClass().getName());
@@ -74,6 +86,16 @@ public class GlobalExceptionHandler {
             HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
             return handleExceptionInternal(ex, null, headers, status, request);
         }
+    }
+
+    private ResponseEntity<ApiError> handlePasswordNotValid(PasswordNotValid ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        String error = ex.getMessage();
+        return handleExceptionInternal(ex, new ApiError(error), headers, status, request);
+    }
+
+    private ResponseEntity<ApiError> handleUsernameNotValid(UsernameNotValid ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        String error = ex.getMessage();
+        return handleExceptionInternal(ex, new ApiError(error), headers, status, request);
     }
 
     protected final ResponseEntity<ApiError> handleCnpjFound(CnpjFound ex, HttpHeaders headers,

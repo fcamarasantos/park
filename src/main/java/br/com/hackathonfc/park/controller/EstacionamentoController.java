@@ -38,7 +38,7 @@ public class EstacionamentoController {
 	private EstacionamentoBO estacionamentoBO;
 
 	@GetMapping("/{id}")
-	public EstacionamentoDTO detalhar(@PathVariable Long id){
+	public EstacionamentoDTO detalhar(@PathVariable Long id) throws EstacionamentoNotFound {
 		return estacionamentoBO.detalharEstacionamento(id);
 	}
 
