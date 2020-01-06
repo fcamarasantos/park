@@ -5,11 +5,11 @@ INSERT INTO ESTACIONAMENTO(id, nome, cnpj, endereco ,telefone, vagas_motos, vaga
 INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(1, false, 'CARRO')
 INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(1, true, 'CARRO')
 INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(1, false, 'MOTO')
+INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(2, false, 'CARRO')
+INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(2, false, 'MOTO')
 INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(2, true, 'CARRO')
-INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(2, true, 'MOTO')
-INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(2, true, 'CARRO')
-INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(3, true, 'CARRO')
-INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(3, true, 'MOTO')
+INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(3, false, 'CARRO')
+INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(3, false, 'MOTO')
 INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(3, true, 'MOTO')
 
 

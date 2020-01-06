@@ -32,7 +32,7 @@ public class Vaga {
 		@Enumerated(EnumType.STRING)
 		private TipoVaga tipoVaga = TipoVaga.CARRO;
 
-		@OneToOne(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
+		@OneToOne(mappedBy = "vaga", cascade = {CascadeType.REMOVE, CascadeType.REFRESH}, orphanRemoval = true)
 		private Veiculo veiculo;
 
     	public Vaga(VagaDTO vagaDTO, Veiculo veiculo, Estacionamento estacionamento) {
