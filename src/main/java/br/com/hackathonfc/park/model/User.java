@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String username;
+    private String email;
 
     private String password;
 
@@ -30,7 +30,7 @@ public class User implements UserDetails {
     private List<Profile> profiles = new ArrayList<>();
 
     public User(UserDTO userDTO) {
-        this.username = userDTO.getUsername();
+        this.email = userDTO.getEmail();
         this.password = userDTO.getPassword();
     }
 
@@ -47,7 +47,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username;
+        return email;
     }
 
     @Override

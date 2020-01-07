@@ -5,10 +5,12 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
 @Service
@@ -33,6 +35,13 @@ public class TokenService {
                     .signWith(SignatureAlgorithm.HS256, secret.getBytes())
                     .setExpiration(expirationDate)
                     .compact();
+    }
+
+    public ResponseEntity<Void> refreshToken (HttpServletResponse httpServletResponse){
+        User user = UserService.authenticated();
+        String token = generateToken(user.getUsername());
+        httpServletResponse.addHeader("Authorization", "Bearer " + token);
+        return ResponseEntity.noContent().build();
     }
 
     public boolean isTokenValid(String token) {

@@ -21,9 +21,9 @@ public class UserService {
 
 
     public ResponseEntity<UserDTO> cadastrar(UserDTO userDTO) throws UsernameNotValid, PasswordNotValid {
-        if(ValidatePassword(userDTO.getPassword()) != true) {
+        if(validatePassword(userDTO.getPassword()) != true) {
             throw new PasswordNotValid();
-        } else if(ValidateUsername(userDTO.getUsername()) != true){
+        } else if(validateEmail(userDTO.getEmail()) != true){
             throw new UsernameNotValid();
         } else{
             return ResponseEntity.ok(userMAP.toDTO(userRepository.save(userMAP.fromDTO(userDTO))));
@@ -39,11 +39,11 @@ public class UserService {
         }
     }
 
-    private boolean ValidateUsername(String username){
+    private boolean validateEmail(String email){
         return true;
     }
 
-    private boolean ValidatePassword(String password){
+    private boolean validatePassword(String password){
         return true;
     }
 }
