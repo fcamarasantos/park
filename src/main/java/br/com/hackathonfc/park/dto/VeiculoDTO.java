@@ -1,15 +1,11 @@
 package br.com.hackathonfc.park.dto;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import br.com.hackathonfc.park.model.TipoVeiculo;
+import br.com.hackathonfc.park.enums.TipoVeiculo;
 import br.com.hackathonfc.park.model.Veiculo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;

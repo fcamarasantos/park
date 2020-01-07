@@ -1,13 +1,10 @@
 package br.com.hackathonfc.park.model;
 
 import br.com.hackathonfc.park.dto.VeiculoDTO;
-import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
-import br.com.hackathonfc.park.repository.VagaRepository;
-import br.com.hackathonfc.park.service.VagaService;
+import br.com.hackathonfc.park.enums.TipoVeiculo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
@@ -42,6 +39,15 @@ public class Veiculo {
 		this.cor = veiculoDTO.getCor();
 		this.placa = veiculoDTO.getPlaca();
 		this.tipoVeiculo = veiculoDTO.getTipoVeiculo();
+		this.vaga = vaga;
+	}
+
+	public Veiculo(String marca, String modelo, String cor, String placa, TipoVeiculo tipoVeiculo, Vaga vaga){
+		this.marca = marca;
+		this.modelo = modelo;
+		this.cor = cor;
+		this.placa = placa;
+		this.tipoVeiculo = tipoVeiculo;
 		this.vaga = vaga;
 	}
 }

@@ -1,25 +1,19 @@
 package br.com.hackathonfc.park.model;
 
 import br.com.hackathonfc.park.dto.UserDTO;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
-@Entity
 @Data
+@Entity
 @NoArgsConstructor
-@AllArgsConstructor
 public class User implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String email;
@@ -27,17 +21,23 @@ public class User implements UserDetails {
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Profile> profiles = new ArrayList<>();
+    private List<Perfil> perfis = new ArrayList<>();
 
     public User(UserDTO userDTO) {
+        this.id = userDTO.getId();
         this.email = userDTO.getEmail();
         this.password = userDTO.getPassword();
     }
 
+    public User(String email, String password, List<Perfil> perfis) {
+        this.email = email;
+        this.password = password;
+        this.perfis = perfis;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.profiles;
+        return this.perfis;
     }
 
     @Override
@@ -69,4 +69,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

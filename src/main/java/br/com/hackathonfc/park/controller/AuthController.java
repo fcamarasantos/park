@@ -4,7 +4,6 @@ import br.com.hackathonfc.park.dto.EmailDTO;
 import br.com.hackathonfc.park.model.User;
 import br.com.hackathonfc.park.service.AuthService;
 import br.com.hackathonfc.park.service.TokenService;
-import br.com.hackathonfc.park.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -22,7 +22,7 @@ public class Estacionamento {
 	
 	private String nome;
 	
-	private int cnpj;
+	private String cnpj;
 	
 	private String endereco;
 	
@@ -46,4 +46,14 @@ public class Estacionamento {
 		this.vagasMotos = estacionamentoDTO.getVagasMotos();
 		this.precoHora = estacionamentoDTO.getPrecoHora();
     }
+
+	public Estacionamento(String s, String s1, String s2, int i, int i1, int i2, double v) {
+    	this.nome = s;
+    	this.cnpj = s1;
+    	this.endereco = s2;
+    	this.telefone = i;
+    	this.vagasMotos = i1;
+    	this.vagasCarros = i2;
+    	this.precoHora = v;
+	}
 }

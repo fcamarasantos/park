@@ -1,5 +1,6 @@
 package br.com.hackathonfc.park.dto;
 
+import br.com.hackathonfc.park.enums.TipoVaga;
 import br.com.hackathonfc.park.model.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

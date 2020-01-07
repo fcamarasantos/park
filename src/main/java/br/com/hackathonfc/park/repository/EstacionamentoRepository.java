@@ -12,7 +12,7 @@ public interface EstacionamentoRepository extends JpaRepository<Estacionamento, 
 	
 	Estacionamento findById(long id);
 
-    Optional<Estacionamento> findByCnpj(Integer cnpj);
+    Optional<Estacionamento> findByCnpj(String cnpj);
 
     Optional<Estacionamento> findByNome(String nome);
 }

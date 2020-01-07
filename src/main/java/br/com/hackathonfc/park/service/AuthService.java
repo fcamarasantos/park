@@ -22,7 +22,7 @@ public class AuthService {
 
     private Random random = new Random();
 
-    public ResponseEntity<User> sendNewPassword(String email) throws UsernameNotFoundException {
+    public ResponseEntity<User>sendNewPassword(String email) throws UsernameNotFoundException {
         Optional<User> checkUser = userRepository.findByEmail(email);
 
         if (checkUser.isPresent()){

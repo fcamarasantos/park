@@ -1,15 +1,11 @@
 package br.com.hackathonfc.park.dto;
 
-import br.com.hackathonfc.park.model.TipoVaga;
-import br.com.hackathonfc.park.model.TipoVeiculo;
-import br.com.hackathonfc.park.model.Vaga;
+import br.com.hackathonfc.park.enums.TipoVaga;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor

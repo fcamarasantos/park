@@ -20,7 +20,7 @@ public class EstacionamentoDTO {
 	private String nome;
 	
 	@NotNull 
-	private int cnpj;
+	private String cnpj;
 	
 	@NotEmpty
 	private String endereco;

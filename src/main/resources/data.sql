@@ -12,14 +12,20 @@ INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(3, false, 'CARRO')
 INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(3, false, 'MOTO')
 INSERT INTO VAGA(estacionamento_id, livre, tipo_vaga) VALUES(3, true, 'MOTO')
 
-
 INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES(1, 'Ford', 'Mustang', 'Preto', 'FORD-4444', 'CARRO', 1)
 INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES(2, 'BMW', 'S1000RR', 'Vermelho', 'MALB-6666', 'MOTO', 3)
-
 INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES(3, 'Chevrolet', 'Cruze', 'Prata', 'VVVV-6969', 'CARRO', 4)
 INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES(4, 'Honda', 'PCX', 'Branco', 'HOND-6372', 'MOTO', 5)
-
 INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES(5, 'Fiat', 'Punto', 'Branco', 'FIAT-6666', 'CARRO', 7)
 INSERT INTO VEICULO(id, marca, modelo, cor, placa, tipo_veiculo, vaga_id) VALUES(6, 'Harley Davidson', 'Fat Boy 2014', 'Vermelho', 'HARL-1882', 'MOTO', 8)
 
-INSERT INTO USER(id, email, password) VALUES(1, 'admin', '$2a$10$ytMUsX0w0LYTgx5pmonSyugG4ETZJV8n.c.rbBPDbDSAn2.LmMX6S')
+INSERT INTO USER(id, email, password) VALUES (1, 'admin@gmail.com', '$2a$10$5O.y9yx5N7nzERS.D2.Boe1mndKxC97DwlVR28H2dEUAcI08myG2.')
+INSERT INTO USER(id, email, password) VALUES (2, 'ana@gmail.com', '$2a$10$5O.y9yx5N7nzERS.D2.Boe1mndKxC97DwlVR28H2dEUAcI08myG2.')
+INSERT INTO USER(id, email, password) VALUES (3, 'joao@gmail.com', '$2a$10$5O.y9yx5N7nzERS.D2.Boe1mndKxC97DwlVR28H2dEUAcI08myG2.')
+
+INSERT INTO PERFIL(id, name) VALUES(1, 'ADMIN')
+INSERT INTO PERFIL(id, name) VALUES(2, 'USER')
+
+INSERT INTO USER_PERFIS(user_id, perfis_id) VALUES(1, 1)
+INSERT INTO USER_PERFIS(user_id, perfis_id) VALUES(2, 2)
+INSERT INTO USER_PERFIS(user_id, perfis_id) VALUES(3, 2)

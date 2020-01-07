@@ -1,16 +1,14 @@
 package br.com.hackathonfc.park.service;
 
-import br.com.hackathonfc.park.controller.EstacionamentoController;
 import br.com.hackathonfc.park.dto.EstacionamentoDTO;
 import br.com.hackathonfc.park.exception.CnpjFound;
 import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
 import br.com.hackathonfc.park.exception.NomeFound;
 import br.com.hackathonfc.park.mapper.EstacionamentoMAP;
 import br.com.hackathonfc.park.model.Estacionamento;
-import br.com.hackathonfc.park.model.TipoVaga;
+import br.com.hackathonfc.park.enums.TipoVaga;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
-import br.com.hackathonfc.park.repository.VagaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,13 +16,12 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-import static br.com.hackathonfc.park.model.TipoVaga.*;
-import static br.com.hackathonfc.park.model.TipoVaga.MOTO;
+import static br.com.hackathonfc.park.enums.TipoVaga.*;
+import static br.com.hackathonfc.park.enums.TipoVaga.MOTO;
 
 @Service
 @Slf4j
@@ -129,7 +126,7 @@ public class EstacionamentoService {
             throw new EstacionamentoNotFound();
     }
 
-    public boolean validateCnpj(int cnpj){
+    public boolean validateCnpj(String cnpj){
         return estacionamentoRepository.findByCnpj(cnpj).isPresent();
     }
 

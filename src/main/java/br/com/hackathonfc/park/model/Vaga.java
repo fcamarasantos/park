@@ -1,17 +1,10 @@
 package br.com.hackathonfc.park.model;
 
 import br.com.hackathonfc.park.dto.VagaDTO;
-import br.com.hackathonfc.park.repository.EstacionamentoRepository;
-import br.com.hackathonfc.park.repository.VagaRepository;
-import br.com.hackathonfc.park.repository.VeiculoRepository;
+import br.com.hackathonfc.park.enums.TipoVaga;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 
 import javax.persistence.*;
 
@@ -47,5 +40,12 @@ public class Vaga {
     		this.livre = true;
     		this.estacionamento = estacionamento;
     		this.tipoVaga = tipoVaga;
+		}
+
+		public Vaga(Estacionamento estacionamento, Boolean livre, TipoVaga tipoVaga, Veiculo veiculo){
+    		this.estacionamento = estacionamento;
+    		this.livre = livre;
+    		this.tipoVaga = tipoVaga;
+    		this.veiculo = veiculo;
 		}
 }

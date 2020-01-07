@@ -1,7 +1,5 @@
 package br.com.hackathonfc.park.util;
 
-import br.com.hackathonfc.park.model.User;
-import br.com.hackathonfc.park.repository.UserRepository;
 import br.com.hackathonfc.park.service.TokenService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

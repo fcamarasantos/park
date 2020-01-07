@@ -1,4 +1,4 @@
-package br.com.hackathonfc.park.model;
+package br.com.hackathonfc.park.enums;
 
 public enum TipoVeiculo {
 	

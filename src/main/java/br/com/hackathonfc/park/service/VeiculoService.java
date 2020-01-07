@@ -1,23 +1,18 @@
 package br.com.hackathonfc.park.service;
 
-import br.com.hackathonfc.park.dto.EstacionamentoDTO;
 import br.com.hackathonfc.park.dto.VeiculoDTO;
 import br.com.hackathonfc.park.exception.*;
 import br.com.hackathonfc.park.mapper.VeiculoMAP;
-import br.com.hackathonfc.park.model.TipoVaga;
-import br.com.hackathonfc.park.model.TipoVeiculo;
+import br.com.hackathonfc.park.enums.TipoVaga;
+import br.com.hackathonfc.park.enums.TipoVeiculo;
 import br.com.hackathonfc.park.model.Vaga;
 import br.com.hackathonfc.park.model.Veiculo;
-import br.com.hackathonfc.park.repository.VagaRepository;
 import br.com.hackathonfc.park.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
