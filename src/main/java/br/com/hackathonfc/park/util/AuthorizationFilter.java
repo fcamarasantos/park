@@ -22,13 +22,10 @@ public class AuthorizationFilter extends BasicAuthenticationFilter {
 
     private UserDetailsService userDetailsService;
 
-    private UserRepository userRepository;
-
-    public AuthorizationFilter(AuthenticationManager authenticationManager, TokenService tokenService, UserDetailsService userDetailsService, UserRepository userRepository) {
+    public AuthorizationFilter(AuthenticationManager authenticationManager, TokenService tokenService, UserDetailsService userDetailsService) {
         super(authenticationManager);
         this.tokenService = tokenService;
         this.userDetailsService = userDetailsService;
-        this.userRepository = userRepository;
     }
 
     @Override

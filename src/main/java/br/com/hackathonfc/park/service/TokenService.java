@@ -23,14 +23,13 @@ public class TokenService {
     public static final String AUTHORIZATION = "Authorization";
     public static final String BEARER_ = "Bearer ";
 
-    public String generateToken(Authentication authentication){
-            User user= (User) authentication.getPrincipal();
+    public String generateToken(String username){
             Date today = new Date(System.currentTimeMillis());
 
             Date expirationDate = new Date(today.getTime() + Long.parseLong(expiration));
 
             return Jwts.builder()
-                    .setSubject(user.getUsername())
+                    .setSubject(username)
                     .signWith(SignatureAlgorithm.HS256, secret.getBytes())
                     .setExpiration(expirationDate)
                     .compact();

@@ -4,9 +4,11 @@ import br.com.hackathonfc.park.dto.UserDTO;
 import br.com.hackathonfc.park.exception.PasswordNotValid;
 import br.com.hackathonfc.park.exception.UsernameNotValid;
 import br.com.hackathonfc.park.mapper.UserMAP;
+import br.com.hackathonfc.park.model.User;
 import br.com.hackathonfc.park.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +28,14 @@ public class UserService {
         } else{
             return ResponseEntity.ok(userMAP.toDTO(userRepository.save(userMAP.fromDTO(userDTO))));
 
+        }
+    }
+
+    public static User authenticated(){
+        try {
+            return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        } catch (Exception e){
+            return null;
         }
     }
 

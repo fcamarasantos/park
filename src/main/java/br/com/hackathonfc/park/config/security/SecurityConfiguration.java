@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
 
         http.addFilter(new AuthenticationFilter(authenticationManager(), tokenService));
-        http.addFilter(new AuthorizationFilter(authenticationManager(), tokenService, userDetailsService, userRepository));
+        http.addFilter(new AuthorizationFilter(authenticationManager(), tokenService, userDetailsService));
     }
 
     @Override
