@@ -4,10 +4,12 @@ import br.com.hackathonfc.park.dto.UserDTO;
 import br.com.hackathonfc.park.exception.PasswordNotValid;
 import br.com.hackathonfc.park.exception.UsernameNotValid;
 import br.com.hackathonfc.park.mapper.UserMAP;
+import br.com.hackathonfc.park.model.Perfil;
 import br.com.hackathonfc.park.model.User;
 import br.com.hackathonfc.park.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AuthorizationServiceException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,9 @@ public class UserService {
     @Autowired
     private DbService dbService;
 
+    @Autowired
+    private PerfilService perfilService;
+
     public ResponseEntity<UserDTO> cadastrar(UserDTO userDTO) throws UsernameNotValid, PasswordNotValid {
         if(validatePassword(userDTO.getPassword()) != true) {
             throw new PasswordNotValid();
@@ -38,9 +43,15 @@ public class UserService {
 
     public UserDTO detalhar(Long id) throws UsernameNotFoundException{
         Optional<User> checkUser = userRepository.findById(id);
+        User user = UserService.authenticated();
+        Perfil perfilAdmin = perfilService.detalhar(1L);
 
         if(checkUser.isPresent()){
-            return new UserDTO(checkUser.get());
+            if(user==null || !user.hasRole(perfilAdmin) && !id.equals(user.getId())) {
+                throw new AuthorizationServiceException("Acess danied!");
+            } else {
+                return new UserDTO(checkUser.get());
+            }
         } else {
             throw new UsernameNotFoundException("Usuário não encontrado no sistema!");
         }

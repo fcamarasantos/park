@@ -33,6 +33,7 @@ public class UserController {
         return userService.atualizar(id, userDTO);
     }
 
+    @PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletar(@PathVariable Long id){
         return userService.remover(id);

@@ -43,6 +43,12 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public User(String email, String password, Perfil perfil){
+        this.email = email;
+        this.password = password;
+        this.perfis.add(perfil);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.perfis;
@@ -76,6 +82,10 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public boolean hasRole(Perfil perfil){
+        return getAuthorities().contains(perfil);
     }
 
 }

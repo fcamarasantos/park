@@ -21,6 +21,15 @@ public class SwaggerConfigurations {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.hackathonfc.park"))
                 .paths(PathSelectors.ant("/**"))
-                .build();
+                .build()
+                .globalOperationParameters(Arrays.asList(
+                        new ParameterBuilder()
+                        .name("Authorization")
+                        .description("Header para token JWT")
+                        .modelRef(new ModelRef("string"))
+                        .parameterType("header")
+                        .required(false)
+                        .build()
+                ));
     }
 }

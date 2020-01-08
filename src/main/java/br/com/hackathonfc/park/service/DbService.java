@@ -35,11 +35,12 @@ public class DbService {
         perfilRepository.save(perfil1);
         perfilRepository.save(perfil2);
 
-        List<Perfil> perfis = perfilRepository.findAll();
+        Perfil perfilUser = perfilRepository.findById(perfil2.getId()).get();
+        Perfil perfilAdmin = perfilRepository.findById(perfil1.getId()).get();
 
-        User user = new User("admin@gmail.com", encode("admin"), perfis);
-        User user1 = new User("user@gmail.com", encode("user"), perfis);
-        User user2 = new User("henrico@gmail.com", encode("admin"), perfis);
+        User user = new User("admin@gmail.com", encode("admin"), perfilAdmin);
+        User user1 = new User("user@gmail.com", encode("user"), perfilUser);
+        User user2 = new User("henrico@gmail.com", encode("admin"), perfilUser);
 
         Estacionamento estacionamento = new Estacionamento("Estacionamento 1", "1234556", "Rua Doutora Ana Costa, 505 - Aparecida, Santos/SP", 123456, 4, 4, 8.50, user);
         Estacionamento estacionamento1 = new Estacionamento("Estacionamento 2", "1234556", "Rua Marechal Mallet, 403 - Embaré, Santos/SP", 123456, 8, 8, 7.80, user1);
@@ -84,8 +85,6 @@ public class DbService {
         veiculoRepository.save(veiculo4);
         veiculoRepository.save(veiculo5);
         veiculoRepository.save(veiculo6);
-
-
     }
 
     public String encode(String password){

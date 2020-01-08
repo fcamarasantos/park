@@ -52,15 +52,16 @@ public class EstacionamentoController {
 	public ResponseEntity<EstacionamentoDTO> cadastrar(@RequestBody @Valid EstacionamentoDTO estacionamentoDTO) throws NomeFound, CnpjFound {
 		return estacionamentoBO.cadastrar(estacionamentoDTO);
 	}
-	
+
 	@PutMapping("/{id}")
 	public ResponseEntity<EstacionamentoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid EstacionamentoDTO estacionamentoDTO) throws EstacionamentoNotFound {
 		return estacionamentoBO.atualizar(id, estacionamentoDTO);
 	}
 
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Estacionamento> remover(@PathVariable Long id) throws EstacionamentoNotFound {
 		return estacionamentoBO.deletar(id);
 	}
-	
+
 }
