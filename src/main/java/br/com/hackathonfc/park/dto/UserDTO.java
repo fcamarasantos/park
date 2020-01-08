@@ -22,7 +22,7 @@ public class UserDTO {
 
     public UserDTO(User user) {
         this.id = user.getId();
-        this.email = user.getUsername();
+        this.email = user.getEmail();
         this.password = user.getPassword();
     }
 }

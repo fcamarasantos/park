@@ -5,6 +5,7 @@ import br.com.hackathonfc.park.enums.TipoVeiculo;
 import br.com.hackathonfc.park.model.*;
 import br.com.hackathonfc.park.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -40,7 +41,7 @@ public class DbService {
         Veiculo veiculo2 = new Veiculo("BMW", "Tiger", "Preto", "XXXX-5555", TipoVeiculo.MOTO, vaga2);
 
         List<Perfil> perfis = perfilRepository.findAll();
-        User user = new User("henrico@gmail.com", "admin", perfis);
+        User user = new User("admin@gmail.com", encode("admin"), perfis);
 
         estacionamentoRepository.save(estacionamento);
         perfilRepository.save(perfil1);
@@ -50,5 +51,9 @@ public class DbService {
         veiculoRepository.save(veiculo);
         veiculoRepository.save(veiculo2);
         userRepository.save(user);
+    }
+
+    public String encode(String password){
+        return new BCryptPasswordEncoder().encode(password);
     }
 }

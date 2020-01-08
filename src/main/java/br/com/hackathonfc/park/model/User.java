@@ -35,6 +35,11 @@ public class User implements UserDetails {
         this.perfis = perfis;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.perfis;

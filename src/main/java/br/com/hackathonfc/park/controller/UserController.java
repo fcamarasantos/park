@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserDTO> detalhar(@PathVariable Long id){
+    public UserDTO detalhar(@PathVariable Long id){
         return userService.detalhar(id);
     }
 

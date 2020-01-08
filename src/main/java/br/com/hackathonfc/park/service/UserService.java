@@ -22,21 +22,25 @@ public class UserService {
 
     private UserMAP userMAP;
 
+    @Autowired
+    private DbService dbService;
+
     public ResponseEntity<UserDTO> cadastrar(UserDTO userDTO) throws UsernameNotValid, PasswordNotValid {
         if(validatePassword(userDTO.getPassword()) != true) {
             throw new PasswordNotValid();
         } else if(validateEmail(userDTO.getEmail()) != true){
             throw new UsernameNotValid();
         } else{
-            return ResponseEntity.ok(userMAP.toDTO(userRepository.save(userMAP.fromDTO(userDTO))));
+            User user = userRepository.save(new User(userDTO.getEmail(), dbService.encode(userDTO.getPassword())));
+           return ResponseEntity.ok(new UserDTO(user));
         }
     }
 
-    public ResponseEntity<UserDTO> detalhar(Long id) throws UsernameNotFoundException{
+    public UserDTO detalhar(Long id) throws UsernameNotFoundException{
         Optional<User> checkUser = userRepository.findById(id);
 
         if(checkUser.isPresent()){
-            return ResponseEntity.ok(userMAP.toDTO(checkUser.get()));
+            return new UserDTO(checkUser.get());
         } else {
             throw new UsernameNotFoundException("Usuário não encontrado no sistema!");
         }
@@ -75,7 +79,7 @@ public class UserService {
         }
     }
 
-    private boolean validateEmail(String email) throws UsernameNotValid {
+    private boolean validateEmail(String email){
         Optional<User> checkUser = userRepository.findByEmail(email);
 
         if (checkUser.isPresent()){
