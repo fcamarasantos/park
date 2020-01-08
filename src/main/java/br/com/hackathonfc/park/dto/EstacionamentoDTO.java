@@ -4,6 +4,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import br.com.hackathonfc.park.model.Estacionamento;
+import br.com.hackathonfc.park.model.User;
 import br.com.hackathonfc.park.repository.EstacionamentoRepository;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,7 +38,10 @@ public class EstacionamentoDTO {
 	@NotNull 
 	private Double precoHora;
 
-	public EstacionamentoDTO(Estacionamento estacionamento) {
+	@NotNull
+	private Long userId;
+
+	public EstacionamentoDTO(Estacionamento estacionamento, User user) {
 		this.id = estacionamento.getId();
 		this.nome = estacionamento.getNome();
 		this.cnpj = estacionamento.getCnpj();
@@ -46,5 +50,6 @@ public class EstacionamentoDTO {
 		this.vagasCarros = estacionamento.getVagasCarros();
 		this.vagasMotos = estacionamento.getVagasMotos();
 		this.precoHora = estacionamento.getPrecoHora();
+		this.userId = user.getId();
 	}
 }

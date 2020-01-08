@@ -23,6 +23,9 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Perfil> perfis = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user")
+    private List<Estacionamento> estacionamentos = Arrays.asList();
+
     public User(UserDTO userDTO) {
         this.id = userDTO.getId();
         this.email = userDTO.getEmail();

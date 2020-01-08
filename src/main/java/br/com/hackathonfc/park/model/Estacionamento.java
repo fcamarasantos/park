@@ -33,11 +33,14 @@ public class Estacionamento {
 	private int vagasCarros;
 	
 	private Double precoHora;
+
+	@ManyToOne
+	private User user;
 	
 	@OneToMany(mappedBy = "estacionamento", cascade = CascadeType.REMOVE, orphanRemoval = true)
 	private List<Vaga> vagas = new ArrayList<>();
 
-    public Estacionamento(EstacionamentoDTO estacionamentoDTO) {
+    public Estacionamento(EstacionamentoDTO estacionamentoDTO, User user) {
 		this.nome = estacionamentoDTO.getNome();
 		this.cnpj = estacionamentoDTO.getCnpj();
 		this.endereco = estacionamentoDTO.getEndereco();
@@ -45,9 +48,10 @@ public class Estacionamento {
 		this.vagasCarros = estacionamentoDTO.getVagasCarros();
 		this.vagasMotos = estacionamentoDTO.getVagasMotos();
 		this.precoHora = estacionamentoDTO.getPrecoHora();
+		this.user = user;
     }
 
-	public Estacionamento(String s, String s1, String s2, int i, int i1, int i2, double v) {
+	public Estacionamento(String s, String s1, String s2, int i, int i1, int i2, double v, User user) {
     	this.nome = s;
     	this.cnpj = s1;
     	this.endereco = s2;
@@ -55,5 +59,6 @@ public class Estacionamento {
     	this.vagasMotos = i1;
     	this.vagasCarros = i2;
     	this.precoHora = v;
+    	this.user = user;
 	}
 }
