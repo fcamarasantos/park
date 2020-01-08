@@ -25,8 +25,8 @@ public class VeiculoController {
     }
 
     @GetMapping("/{id}/veiculos/todos")
-    public List<VeiculoDTO> listarTodosOsVeiculos(@PathVariable Long id) throws EstacionamentoNotFound {
-        return veiculoService.listarTodosOsVeiculos(id);
+    public List<VeiculoDTO> listarTodosOsVeiculos() throws EstacionamentoNotFound {
+        return veiculoService.listarTodosOsVeiculos();
     }
 
     @GetMapping("/{id}/veiculos/{id2}")

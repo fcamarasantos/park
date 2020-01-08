@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -28,33 +29,20 @@ public class VeiculoService {
 
     private VeiculoMAP veiculoMAP = new VeiculoMAP();
 
-    public List<VeiculoDTO> listarTodosOsVeiculos(Long id) throws EstacionamentoNotFound {
-        List<Vaga> vagas = vagaService.listarDeUmEstacionamento(id);
+    public List<VeiculoDTO> listarTodosOsVeiculos() throws EstacionamentoNotFound {
+        List<Veiculo> veiculos = veiculoRepository.findAll();
 
-        List<VeiculoDTO> veiculos = null;
-
-        for (Vaga vaga : vagas) {
-            veiculos.addAll(veiculoMAP.toDTO(veiculoRepository.findByVagaId(id)));
-        }
-
-        return veiculos;
+        return veiculoMAP.toDTO(veiculos);
     }
 
     public List<VeiculoDTO> listarVeiculosDoEstacionamento(Long id) throws EstacionamentoNotFound {
         List<Vaga> vagas = vagaService.listarDeUmEstacionamento(id);
 
-        List<VeiculoDTO> veiculos = Arrays.asList();
-
-        Veiculo veiculo;
+        List<VeiculoDTO> veiculos = new ArrayList<VeiculoDTO>();
 
         for (Vaga vaga : vagas) {
-            veiculo = vaga.getVeiculo();
-            if (veiculos == null){
-
-            }
-            else {
-                veiculos.add(veiculoMAP.toDTO(veiculo));
-            }
+            Veiculo veiculo = vaga.getVeiculo();
+            veiculos.add(new VeiculoDTO(veiculo));
         }
 
         return veiculos;
