@@ -7,6 +7,7 @@ import br.com.hackathonfc.park.mapper.UserMAP;
 import br.com.hackathonfc.park.model.Perfil;
 import br.com.hackathonfc.park.model.User;
 import br.com.hackathonfc.park.repository.UserRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AuthorizationServiceException;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
@@ -45,10 +47,11 @@ public class UserService {
         Optional<User> checkUser = userRepository.findById(id);
         User user = UserService.authenticated();
         Perfil perfilAdmin = perfilService.detalhar(1L);
+        Boolean checkBool = user.hasRole(perfilAdmin);
 
         if(checkUser.isPresent()){
-            if(user==null || !user.hasRole(perfilAdmin) && !id.equals(user.getId())) {
-                throw new AuthorizationServiceException("Acess danied!");
+            if(user == null || !user.hasRole(perfilAdmin)) {
+                throw new AuthorizationServiceException("Acesso não permitido!");
             } else {
                 return new UserDTO(checkUser.get());
             }
