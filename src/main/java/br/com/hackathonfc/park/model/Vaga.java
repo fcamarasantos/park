@@ -17,13 +17,13 @@ public class Vaga {
 		@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 
-		@ManyToOne
-		private Estacionamento estacionamento;
-
 		private boolean livre = true;
 
-		@Enumerated(EnumType.STRING)
+        @Enumerated(EnumType.STRING)
 		private TipoVaga tipoVaga = TipoVaga.CARRO;
+
+        @ManyToOne
+        private Estacionamento estacionamento;
 
 		@OneToOne(mappedBy = "vaga", cascade = {CascadeType.REMOVE, CascadeType.REFRESH}, orphanRemoval = true)
 		private Veiculo veiculo;
