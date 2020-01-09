@@ -77,9 +77,16 @@ public class UserService {
     public ResponseEntity<Void> remover(Long id) throws UsernameNotFoundException{
         Optional<User> checkUser = userRepository.findById(id);
 
+        User user = UserService.authenticated();
+
+        Perfil perfil = perfilService.detalhar(1L);
+
         if (checkUser.isPresent()){
-            userRepository.deleteById(id);
-            return ResponseEntity.ok().build();
+            if(user!=null && user.hasRole(perfil)) {
+                userRepository.deleteById(id);
+                return ResponseEntity.ok().build();
+            } else
+                throw new AuthorizationServiceException("Acess danied!");
         } else{
             throw new UsernameNotFoundException("Usuário não encontrado no sistema!");
         }
