@@ -1,11 +1,20 @@
 package br.com.hackathonfc.park.controller;
 
-import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
+import br.com.hackathonfc.park.bo.VagaBO;
+import br.com.hackathonfc.park.dto.VagaDTO;
+import br.com.hackathonfc.park.dto.VagaDTOSemEstacionamento;
+import br.com.hackathonfc.park.exception.EstacionamentoNotFound;
+import br.com.hackathonfc.park.exception.PlacaFound;
+import br.com.hackathonfc.park.exception.VagaNotFound;
+import br.com.hackathonfc.park.exception.VeiculoNotFound;
+import br.com.hackathonfc.park.mapper.VeiculoMAP;
+import br.com.hackathonfc.park.model.Vaga;
+import br.com.hackathonfc.park.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,65 +29,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.hackathonfc.park.controller.dto.VagaDto;
-import br.com.hackathonfc.park.controller.dto.VeiculoDto;
-import br.com.hackathonfc.park.controller.form.VeiculoForm;
-import br.com.hackathonfc.park.model.Vaga;
+import br.com.hackathonfc.park.dto.VeiculoDTO;
 import br.com.hackathonfc.park.model.Veiculo;
 import br.com.hackathonfc.park.repository.VagaRepository;
 import br.com.hackathonfc.park.repository.VeiculoRepository;
 
 @RestController
-@RequestMapping("/estacionamentos/{id}/vagas")
+@RequestMapping("/estacionamentos")
 public class VagaController {
 		
 	@Autowired
-	private VeiculoRepository veiculoRepository;
-	
-	@Autowired
-	private VagaRepository vagaRepository;
-		
-	@CrossOrigin
-	@GetMapping("/{id}")
-	public List<VeiculoDto> listarVeiculo(@PathVariable Long id) {
-		List<Veiculo> veiculos = veiculoRepository.findByVagaId(id);
-		return VeiculoDto.converter(veiculos);
+	private VagaBO vagaBO;
+
+	@GetMapping("/{id}/vagas/{id2}")
+	public VagaDTO detalharVaga(@PathVariable Long id2) throws VagaNotFound{
+		return vagaBO.detalharVaga(id2);
+	}
+
+	@GetMapping("/{id}/vagas")
+	public List<VagaDTOSemEstacionamento> listarVagas(@PathVariable Long id) throws EstacionamentoNotFound {
+		return vagaBO.listarVagas(id);
 	}
 	
-	@CrossOrigin
-	@PostMapping
-	@Transactional
-	public ResponseEntity<VeiculoDto> cadastrarVeiculo(@RequestBody @Valid VeiculoForm form, UriComponentsBuilder uriBuilder) {
-		Veiculo veiculo = form.converter(vagaRepository);
-		veiculoRepository.save(veiculo);
-		
-		URI uri = uriBuilder.path("/estacionamentos/{id}/vagas/{id}").buildAndExpand(veiculo.getId()).toUri();
-		return ResponseEntity.created(uri).body(new VeiculoDto(veiculo));
+	@PostMapping("/{id}/vagas")
+	public ResponseEntity<VagaDTO> cadastrarVaga(@RequestBody @Valid VagaDTO vagaDTO, @PathVariable Long id){
+		return vagaBO.cadastrarVaga(vagaDTO, id);
 	}
 	
-	@CrossOrigin
-	@PutMapping("/{id}")
-	@Transactional
-	public ResponseEntity<VeiculoDto> atualizarVeiculo(@PathVariable Long id, @RequestBody @Valid VeiculoForm form) {
-		Optional<Veiculo> optional = veiculoRepository.findById(id);
-		if(optional.isPresent()) {
-			Veiculo veiculo = form.atualizar(id, veiculoRepository);
-			return ResponseEntity.ok(new VeiculoDto(veiculo));
-		}
-		
-		return ResponseEntity.notFound().build();
+	@PutMapping("/{id}/vagas/{id2}")
+	public ResponseEntity<VagaDTO> atualizarVaga(@PathVariable Long id2, @RequestBody @Valid VagaDTO vagaDTO) throws VagaNotFound, VeiculoNotFound {
+		return vagaBO.atualizarVaga(id2, vagaDTO);
 	}
 	
-	@CrossOrigin
-	@DeleteMapping("/{id}")
-	@Transactional
-	public ResponseEntity<?> removerVeiculo(@PathVariable Long id) {		
-		Optional<Veiculo> optional = veiculoRepository.findById(id);
-		if(optional.isPresent()) {
-			veiculoRepository.deleteById(id);
-			return ResponseEntity.ok().build();
-		}
-		
-		return ResponseEntity.notFound().build();
+	@DeleteMapping("/{id}/vagas/{id2}")
+	public ResponseEntity<VagaDTO> removerVaga(@PathVariable Long id2) throws VeiculoNotFound, VagaNotFound {
+		return vagaBO.removerVaga(id2);
 	}
 }

@@ -54,3 +54,39 @@ Crie um fork do teste para acompanharmos o seu desenvolvimento através dos seus
 
 ## Obrigado!
 Agradecemos sua participação. Boa sorte! 😄
+
+## Requisitos do Projeto
+
+### Tecnologies
+- JPA, SpringBoot and H2 for Back-end
+- HTML5, CSS, Photoshop, Bootstrap and JavaScript for Front-end
+
+### How to run
+- Open the project in Eclipse IDE
+- Run ParkApplication.java
+- The projects runs on `http://localhost:8080/estacionamentos`
+
+
+### Services
+- List establishments: `http://localhost:8080/estacionamentos`
+- Create establishments: `http://localhost:8080/estacionamentos`
+- _Header: Contet-Type application/json_
+- Update establishments: `http://localhost:8080/estacionamentos/{establishment id}`
+- _Header: Contet-Type application/json_
+- Delete establishments: `http://localhost:8080/estacionamentos/{establishment id}`
+
+- List vacancies: `http://localhost:8080/estacionamentos/{vacancy id}`
+
+- List vehicles: `http://localhost:8080/estacionamentos/{establishment id}/vagas/{vehicle id}`
+- Create vehicles: `http://localhost:8080/estacionamentos/{establishment id}/vagas/{vehicles id}`
+- _Header: Contet-Type application/json_
+- Update vehicles: `http://localhost:8080/estacionamento/{establishment id}/vagas/{vehicle id}`
+- _Header: Contet-Type application/json_
+- Delete vehicles: `http://localhost:8080/estacionamentos/{establishment id}/vagas/{vehicle id}`
+
+
+### Team
+- Henrico Lazuroz Moura de Almeida
+- Thaue Alfredo Ferreira Lima
+- Thiago Henrique Santos
+- Vitor Coelho da Silva
